@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evercart — Coming Soon</title>
+<meta name="description" content="Evercart is coming. The simplest way to sell online. Join the waitlist.">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#000000;--white:#FFFFFF;--green:#3DBF79;--green-hover:#2DA866;}
+html,body{height:100%;-webkit-font-smoothing:antialiased}
+body{font-family:'Manrope',sans-serif;background:var(--black);color:var(--white);min-height:100vh;display:flex;flex-direction:column}
+body::after{content:'';position:fixed;width:600px;height:600px;background:radial-gradient(circle,rgba(61,191,121,0.12) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-60%);pointer-events:none;z-index:0}
+nav{position:relative;z-index:10;padding:28px 48px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:15px;font-weight:800;letter-spacing:1.5px;color:var(--white)}
+.nav-tag{font-size:11px;font-weight:700;color:rgba(255,255,255,0.3);letter-spacing:.5px;text-transform:uppercase}
+.hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px 80px;position:relative;z-index:10}
+h1{font-size:72px;font-weight:800;letter-spacing:-3px;line-height:1.02;color:var(--white);margin-bottom:24px;max-width:700px}
+h1 .green{color:var(--green)}
+.sub{font-size:18px;color:rgba(255,255,255,0.5);font-weight:400;line-height:1.65;max-width:440px;margin-bottom:52px;letter-spacing:-0.2px}
+.countdown{display:flex;align-items:center;gap:24px;margin-bottom:52px}
+.count-block{text-align:center}
+.count-val{font-size:40px;font-weight:800;letter-spacing:-2px;color:var(--white);line-height:1;min-width:60px}
+.count-lbl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:6px}
+.count-sep{font-size:32px;font-weight:800;color:rgba(255,255,255,0.15);margin-bottom:14px}
+.form-wrap{width:100%;max-width:440px;margin-bottom:20px}
+.form-row{display:flex;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:5px;transition:border-color .2s}
+.form-row:focus-within{border-color:rgba(61,191,121,0.4)}
+.email-input{flex:1;background:transparent;border:none;outline:none;padding:11px 16px;font-size:14px;font-family:'Manrope',sans-serif;font-weight:500;color:var(--white)}
+.email-input::placeholder{color:rgba(255,255,255,0.3);font-weight:400}
+.btn-join{background:var(--green);color:var(--white);border:none;padding:11px 22px;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;white-space:nowrap;transition:background .15s;flex-shrink:0}
+.btn-join:hover{background:var(--green-hover)}
+.form-note{font-size:12px;color:rgba(255,255,255,0.25);font-weight:500;margin-top:12px}
+.success-msg{display:none;align-items:center;gap:10px;background:rgba(61,191,121,0.1);border:1px solid rgba(61,191,121,0.25);border-radius:10px;padding:14px 20px;font-size:14px;font-weight:600;color:var(--green);width:100%;max-width:440px;justify-content:center}
+.success-msg.show{display:flex}
+.form-wrap.hide{display:none}
+.features-strip{display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:64px;padding-top:40px;border-top:1px solid rgba(255,255,255,0.06);width:100%;max-width:640px}
+.feat-item{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:rgba(255,255,255,0.35)}
+.feat-check{color:var(--green);font-size:13px;font-weight:800}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+h1{animation:fadeUp .6s ease .1s both}
+.sub{animation:fadeUp .6s ease .2s both}
+.countdown{animation:fadeUp .6s ease .3s both}
+.form-wrap{animation:fadeUp .6s ease .35s both}
+.features-strip{animation:fadeUp .6s ease .45s both}
+footer{position:relative;z-index:10;padding:24px 48px;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.2);font-weight:500}
+@media(max-width:600px){
+  nav{padding:20px 24px}
+  h1{font-size:44px;letter-spacing:-2px}
+  .sub{font-size:16px}
+  .countdown{gap:16px}
+  .count-val{font-size:30px;min-width:44px}
+  .features-strip{gap:20px}
+  footer{padding:20px 24px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">EVERCART</div>
+  <div class="nav-tag">Coming soon</div>
+</nav>
+
+<div class="hero">
+
+  <h1>Sell online.<br><span class="green">Simply.</span></h1>
+
+  <p class="sub">Evercart is the easiest way to launch your online store — no tech skills, no hidden fees. Launching 1 October 2026.</p>
+
+  <div class="countdown">
+    <div class="count-block">
+      <div class="count-val" id="cd-days">00</div>
+      <div class="count-lbl">Days</div>
+    </div>
+    <div class="count-sep">:</div>
+    <div class="count-block">
+      <div class="count-val" id="cd-hours">00</div>
+      <div class="count-lbl">Hours</div>
+    </div>
+    <div class="count-sep">:</div>
+    <div class="count-block">
+      <div class="count-val" id="cd-mins">00</div>
+      <div class="count-lbl">Minutes</div>
+    </div>
+    <div class="count-sep">:</div>
+    <div class="count-block">
+      <div class="count-val" id="cd-secs">00</div>
+      <div class="count-lbl">Seconds</div>
+    </div>
+  </div>
+
+  <div class="form-wrap" id="form-wrap">
+    <div class="form-row">
+      <input class="email-input" type="email" id="email-input" placeholder="Enter your email address">
+      <button class="btn-join" id="join-btn">Join waitlist &rarr;</button>
+    </div>
+    <div class="form-note">No spam. Just a heads-up when we launch. Unsubscribe anytime.</div>
+  </div>
+
+  <div class="success-msg" id="success-msg">
+    <span>&#10003;</span>
+    <span>You're on the list! We'll email you the moment we launch.</span>
+  </div>
+
+  <div class="features-strip">
+    <div class="feat-item"><span class="feat-check">&#10003;</span>No tech skills needed</div>
+    <div class="feat-item"><span class="feat-check">&#10003;</span>0% transaction fees</div>
+    <div class="feat-item"><span class="feat-check">&#10003;</span>Your own domain</div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-copy">&#169; <span id="yr"></span> Evercart &middot; www.evercart.io</div>
+</footer>
+
+<script>
+var LAUNCH = Date.UTC(2026, 9, 1);
+
+function pad(n) {
+  return (n < 10 ? '0' : '') + n;
+}
+
+function tick() {
+  var diff = LAUNCH - Date.now();
+  if (diff < 0) { diff = 0; }
+  var d = Math.floor(diff / 86400000);
+  var h = Math.floor((diff % 86400000) / 3600000);
+  var m = Math.floor((diff % 3600000) / 60000);
+  var s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-days').textContent  = pad(d);
+  document.getElementById('cd-hours').textContent = pad(h);
+  document.getElementById('cd-mins').textContent  = pad(m);
+  document.getElementById('cd-secs').textContent  = pad(s);
+}
+
+tick();
+setInterval(tick, 1000);
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+document.getElementById('join-btn').addEventListener('click', function() {
+  var v = document.getElementById('email-input').value.trim();
+  var valid = v.indexOf('@') > 0 && v.lastIndexOf('.') > v.indexOf('@') + 1;
+  if (!valid) {
+    document.getElementById('email-input').style.outline = '2px solid #EF4444';
+    document.getElementById('email-input').focus();
+    return;
+  }
+  document.getElementById('form-wrap').classList.add('hide');
+  document.getElementById('success-msg').classList.add('show');
+});
+
+document.getElementById('email-input').addEventListener('keydown', function(e) {
+  this.style.outline = '';
+  if (e.key === 'Enter') {
+    document.getElementById('join-btn').click();
+  }
+});
+</script>
+
+</body>
+</html>
