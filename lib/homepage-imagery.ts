@@ -50,7 +50,7 @@ export const HOMEPAGE_IMAGERY = {
       caption: "Skincare, Lisbon.",
     },
     {
-      src: U("1599642944-5d29def8ddcf"),
+      src: U("1602874801007-aa84d4f0e1f4"),
       alt: "Home fragrance product photography",
       caption: "Home fragrance, Stockholm.",
     },

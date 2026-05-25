@@ -55,7 +55,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-offwhite border-t border-line mt-32 text-ink">
+    <footer className="bg-offwhite border-t border-line text-ink">
       <Container size="hero">
         <div className="pt-20 pb-12 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           {/* Brand block */}
