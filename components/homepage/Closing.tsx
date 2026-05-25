@@ -40,7 +40,7 @@ export function Closing() {
           </Reveal>
           <Reveal delay={0.24}>
             <p className="mt-10 text-[12px] text-paper/55">
-              No credit card. Currently in beta. Launching summer 2026.
+              14-day free trial. No credit card required. Currently in beta, launching summer 2026.
             </p>
           </Reveal>
         </div>

@@ -1,56 +1,67 @@
 /**
  * Homepage imagery sources
  * ────────────────────────
- * All Unsplash URLs are in this one file. If any of these 404 or don't
- * fit aesthetically, replace the URL here — every reference across the
- * site resolves through these constants.
+ * Single source of truth for every external image on the homepage. If any
+ * URL 404s, swap it here — every reference resolves through this file.
  *
- * Sourcing rules from the brief (section 8): real product photography,
- * maker / workshop / craft imagery. Avoid: anything with "team", "office",
- * "meeting", "laptop with hands".
+ * Unsplash URL pattern (paths-only photo ID, no query params):
+ *   https://images.unsplash.com/photo-{ID}
  *
- * Unsplash URL pattern:
- *   https://images.unsplash.com/photo-{ID}?w={WIDTH}&auto=format&fit=crop&q=80
+ * Next.js Image handles `sizes` and serves appropriate variants automatically.
  *
- * The Next.js Image component handles `sizes` and serves appropriate variants.
- * Don't add `&w=` query params here — let Next/Image pick.
+ * Production note: Replace these with original photography before launch.
+ * The brief (section 8) calls for real product photography curated by hand —
+ * Unsplash is for V1 iteration, not for production.
  */
 
-const U = (id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&q=80`;
+const U = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&q=80`;
 
 export const HOMEPAGE_IMAGERY = {
-  // Section 3 block 02 — object photography pairing with "Sell with whatever your customers carry"
-  objects: {
-    src: U("1565193566173-7a0ee3dbe261"),
-    alt: "Hand-thrown ceramic vessels in a sunlit studio.",
+  // Section 3 block 01 — pairs with "A storefront that looks made, not assembled"
+  // Want: a beautifully styled retail or product environment that embodies
+  // "this shop was designed."
+  storefrontScene: {
+    src: U("1441986300917-64674bd600d8"),
+    alt: "A beautifully composed retail product display.",
   },
 
-  // Section 3 block 04 — workshop scene pairing with "Support that lives where the work happens"
-  workshop: {
+  // Section 3 block 02 — pairs with "Sell with whatever your customers carry"
+  // Want: a still life that says "premium product."
+  objects: {
     src: U("1556228720-195a672e8a03"),
-    alt: "A maker at work in a small studio, hands on tools.",
+    alt: "A still life of carefully arranged objects.",
+  },
+
+  // Section 3 block 04 — pairs with "Support that lives where the work happens"
+  // Want: a workspace scene, scale-neutral.
+  workspace: {
+    src: U("1556909114-f6e7ad7d3136"),
+    alt: "A considered workspace at a desk.",
   },
 
   // Section 4 — lookbook grid (4 photos with editorial captions)
+  // Categories chosen to be scale-neutral: works for an indie maker AND for
+  // an established DTC brand selling the same category.
   lookbook: [
     {
-      src: U("1565193566173-7a0ee3dbe261"),
-      alt: "Ceramics studio in Lisbon",
-      caption: "Ceramics studio in Lisbon.",
+      src: U("1556228578-8c89e6adf883"),
+      alt: "Skincare product photography",
+      caption: "Skincare, Lisbon.",
     },
     {
-      src: U("1602523498073-fe5dabd91c2b"),
-      alt: "Candle workshop, Stockholm",
-      caption: "Candle workshop, Stockholm.",
+      src: U("1599642944-5d29def8ddcf"),
+      alt: "Home fragrance product photography",
+      caption: "Home fragrance, Stockholm.",
     },
     {
       src: U("1495474472287-4d71bcdd2085"),
-      alt: "Coffee roastery, Cape Town",
-      caption: "Coffee roastery, Cape Town.",
+      alt: "Coffee product photography",
+      caption: "Coffee, Cape Town.",
     },
     {
       src: U("1554224155-6726b3ff858f"),
-      alt: "Leather goods workshop in Brooklyn",
+      alt: "Leather goods product photography",
       caption: "Leather goods, Brooklyn.",
     },
   ],

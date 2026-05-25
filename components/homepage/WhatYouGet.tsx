@@ -1,8 +1,6 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
-import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { Reveal } from "@/components/motion/Reveal";
-import { HaloSkinStorefront } from "@/components/storefront/HaloSkinStorefront";
 import { HOMEPAGE_IMAGERY } from "@/lib/homepage-imagery";
 import { cn } from "@/lib/utils";
 import { type ReactNode } from "react";
@@ -12,20 +10,27 @@ type BlockProps = {
   title: string;
   body: string;
   imagePosition: "left" | "right";
-  children: ReactNode; // the imagery side
+  children: ReactNode;
 };
 
 function Block({ number, title, body, imagePosition, children }: BlockProps) {
   const imageOnLeft = imagePosition === "left";
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center py-16 md:py-24">
-      {/* Image side */}
-      <div className={cn("lg:col-span-7", imageOnLeft ? "lg:order-1" : "lg:order-2")}>
+      <div
+        className={cn(
+          "lg:col-span-7",
+          imageOnLeft ? "lg:order-1" : "lg:order-2",
+        )}
+      >
         <Reveal y={20}>{children}</Reveal>
       </div>
-
-      {/* Copy side */}
-      <div className={cn("lg:col-span-5", imageOnLeft ? "lg:order-2" : "lg:order-1")}>
+      <div
+        className={cn(
+          "lg:col-span-5",
+          imageOnLeft ? "lg:order-2" : "lg:order-1",
+        )}
+      >
         <Reveal>
           <span
             aria-hidden
@@ -63,23 +68,29 @@ export function WhatYouGet() {
         </Reveal>
 
         <div className="mt-6 divide-y divide-line">
-          {/* 01 — Storefront */}
+          {/* 01 — Storefront / builder */}
           <Block
             number="01"
             title="A storefront that looks made, not assembled."
-            body="A section-based builder with restraint by default. Your shop looks like yours — not like a template that 6,000 other shops are also using."
+            body="A section-based builder with restraint by default and 40+ premium themes to start from. Your shop looks like yours — not like a template you share with thousands of other stores."
             imagePosition="right"
           >
-            <BrowserFrame url="haloskin.evercart.io">
-              <HaloSkinStorefront animate={false} />
-            </BrowserFrame>
+            <div className="relative aspect-[5/4] rounded-[14px] overflow-hidden bg-surface">
+              <Image
+                src={HOMEPAGE_IMAGERY.storefrontScene.src}
+                alt={HOMEPAGE_IMAGERY.storefrontScene.alt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="object-cover"
+              />
+            </div>
           </Block>
 
           {/* 02 — Multi-gateway checkout */}
           <Block
             number="02"
             title="Sell with whatever your customers carry."
-            body="Stripe, PayPal, and PayFast in the box. Set up one or all three. Zero transaction fees on the Pro plan — we charge for software, not the privilege of taking payment."
+            body="Stripe, PayPal, and PayFast in the box. Set up one or all three. Zero transaction fees on every plan — we charge for software, not the privilege of taking payment."
             imagePosition="left"
           >
             <div className="relative aspect-[5/4] rounded-[14px] overflow-hidden bg-surface">
@@ -96,22 +107,32 @@ export function WhatYouGet() {
           {/* 03 — Domain */}
           <Block
             number="03"
-            title="Your free shop URL, or bring your own."
-            body="Every store gets a yourshop.evercart.io subdomain from day one. Connect a custom domain whenever you&rsquo;re ready — no plan upgrade required."
+            title="Your shop URL on us, or bring your own."
+            body="Every store gets a yourshop.evercart.io subdomain from day one. Connect a custom domain whenever you&rsquo;re ready — included on every plan, SSL handled for you."
             imagePosition="right"
           >
             <div className="aspect-[5/4] rounded-[14px] bg-offwhite border border-line p-10 md:p-14 flex flex-col justify-center">
               <div className="space-y-5">
                 <div className="inline-flex items-center bg-paper border border-line rounded-md px-4 py-3 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.04)]">
-                  <span className="text-[11px] text-meta font-medium tracking-tight mr-2">https://</span>
-                  <span className="text-[15px] font-semibold text-ink">haloskin.evercart.io</span>
+                  <span className="text-[11px] text-meta font-medium tracking-tight mr-2">
+                    https://
+                  </span>
+                  <span className="text-[15px] font-semibold text-ink">
+                    haloskin.evercart.io
+                  </span>
                 </div>
                 <div className="flex items-center gap-3 pl-4">
-                  <span className="text-[11px] uppercase tracking-label font-bold text-emerald">or</span>
+                  <span className="text-[11px] uppercase tracking-label font-bold text-emerald">
+                    or
+                  </span>
                 </div>
                 <div className="inline-flex items-center bg-paper border border-line rounded-md px-4 py-3 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.04)]">
-                  <span className="text-[11px] text-meta font-medium tracking-tight mr-2">https://</span>
-                  <span className="text-[15px] font-semibold text-ink">haloskin.co</span>
+                  <span className="text-[11px] text-meta font-medium tracking-tight mr-2">
+                    https://
+                  </span>
+                  <span className="text-[15px] font-semibold text-ink">
+                    haloskin.co
+                  </span>
                 </div>
               </div>
             </div>
@@ -121,13 +142,13 @@ export function WhatYouGet() {
           <Block
             number="04"
             title="Support that lives where the work happens."
-            body="Open the chat drawer in your dashboard. Real people answer. No ticket numbers. No email chains. No bot pretending to be a person."
+            body="Open the chat drawer in your dashboard. Real people answer — no ticket numbers, no email chains, no bot pretending to be a person. Faster on Growth, dedicated on Pro."
             imagePosition="left"
           >
             <div className="relative aspect-[5/4] rounded-[14px] overflow-hidden bg-surface">
               <Image
-                src={HOMEPAGE_IMAGERY.workshop.src}
-                alt={HOMEPAGE_IMAGERY.workshop.alt}
+                src={HOMEPAGE_IMAGERY.workspace.src}
+                alt={HOMEPAGE_IMAGERY.workspace.alt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 60vw"
                 className="object-cover"

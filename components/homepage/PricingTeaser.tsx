@@ -7,35 +7,46 @@ import { cn } from "@/lib/utils";
 type Plan = {
   name: string;
   price: string;
-  cadence?: string;
+  cadence: string;
   tagline: string;
   highlights: string[];
   featured?: boolean;
 };
 
-// Placeholder pricing — to be locked when we build /pricing. The shape is
-// committed; the numbers are easy to tune.
 const PLANS: Plan[] = [
   {
     name: "Starter",
-    price: "Free",
-    tagline: "For getting your shop online.",
-    highlights: ["Free .evercart.io subdomain", "Up to 25 products", "Stripe checkout"],
+    price: "$9",
+    cadence: "/ month",
+    tagline: "Launch your store and make your first sales.",
+    highlights: [
+      "Up to 20 products",
+      "Custom domain + SSL",
+      "0% transaction fees",
+    ],
   },
   {
     name: "Growth",
-    price: "£19",
+    price: "$29",
     cadence: "/ month",
-    tagline: "For shops finding their feet.",
-    highlights: ["Custom domain", "Unlimited products", "All payment gateways"],
+    tagline: "The full toolkit to grow and market your store.",
+    highlights: [
+      "Up to 100 products",
+      "Abandoned cart recovery",
+      "Priority support",
+    ],
     featured: true,
   },
   {
     name: "Pro",
-    price: "£49",
+    price: "$79",
     cadence: "/ month",
-    tagline: "For ambitious brands.",
-    highlights: ["0% transaction fees", "Priority support", "Advanced analytics"],
+    tagline: "No limits. No compromises. Total control.",
+    highlights: [
+      "Unlimited products",
+      "Multi-currency checkout",
+      "Dedicated account manager",
+    ],
   },
 ];
 
@@ -55,8 +66,9 @@ export function PricingTeaser() {
             </Reveal>
             <Reveal delay={0.12}>
               <p className="mt-5 text-[17px] leading-[1.55] text-meta max-w-[480px]">
-                Start free. Pay only when you grow. Every plan includes the
-                builder, multi-gateway checkout, and the dashboard.
+                Every plan includes the builder, multi-gateway checkout,
+                custom domain, and 0% transaction fees. Pay 20% less when
+                you choose annual.
               </p>
             </Reveal>
           </div>
@@ -66,7 +78,7 @@ export function PricingTeaser() {
                 href="/pricing"
                 className="group inline-flex items-center gap-1.5 text-[14px] font-semibold text-ink hover:text-meta transition-colors duration-200 ease-apple"
               >
-                See full pricing
+                Compare full plans
                 <ArrowRight
                   size={14}
                   strokeWidth={2}
@@ -99,7 +111,7 @@ export function PricingTeaser() {
                   </h3>
                   {plan.featured && (
                     <span className="label" style={{ color: "#3DBF79" }}>
-                      Most chosen
+                      Most popular
                     </span>
                   )}
                 </div>
@@ -120,16 +132,14 @@ export function PricingTeaser() {
                   >
                     {plan.price}
                   </span>
-                  {plan.cadence && (
-                    <span
-                      className={cn(
-                        "text-[14px] font-medium",
-                        plan.featured ? "text-paper/65" : "text-meta",
-                      )}
-                    >
-                      {plan.cadence}
-                    </span>
-                  )}
+                  <span
+                    className={cn(
+                      "text-[14px] font-medium",
+                      plan.featured ? "text-paper/65" : "text-meta",
+                    )}
+                  >
+                    {plan.cadence}
+                  </span>
                 </div>
                 <ul className="mt-8 space-y-3 flex-1">
                   {plan.highlights.map((h) => (
@@ -143,10 +153,7 @@ export function PricingTeaser() {
                       <Check
                         size={14}
                         strokeWidth={2.5}
-                        className={cn(
-                          "mt-1 flex-shrink-0",
-                          plan.featured ? "text-emerald" : "text-emerald",
-                        )}
+                        className="mt-1 flex-shrink-0 text-emerald"
                       />
                       <span>{h}</span>
                     </li>
@@ -156,6 +163,12 @@ export function PricingTeaser() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal delay={0.3}>
+          <p className="mt-10 text-center text-[12px] text-meta-700">
+            14-day free trial on every plan. No credit card required.
+          </p>
+        </Reveal>
       </Container>
     </section>
   );

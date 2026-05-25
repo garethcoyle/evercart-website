@@ -1,23 +1,23 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { BrowserFrame } from "@/components/ui/BrowserFrame";
-import { HaloSkinStorefront } from "@/components/storefront/HaloSkinStorefront";
 import { APPLE_CURVE } from "@/lib/motion";
 
 export function Hero() {
   const reduced = useReducedMotion();
 
   return (
-    <section className="relative pt-16 md:pt-24 pb-20 md:pb-32 overflow-hidden">
+    <section className="relative pt-12 md:pt-20 pb-16 md:pb-24 overflow-hidden">
       <Container size="hero">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left: copy block */}
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-5">
             <motion.p
               initial={reduced ? { opacity: 0 } : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -40,11 +40,11 @@ export function Hero() {
               initial={reduced ? { opacity: 0 } : { opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.18, ease: APPLE_CURVE }}
-              className="mt-7 text-[17px] lg:text-[18px] leading-[1.55] text-meta max-w-[480px]"
+              className="mt-7 text-[17px] lg:text-[18px] leading-[1.55] text-meta max-w-[460px]"
             >
-              Evercart is the e-commerce platform for makers and boutique
-              brands who care how their shop looks. Built around taste, sold
-              by you.
+              Evercart is the e-commerce platform for shops that take design
+              seriously. From your first product to your hundred-thousandth,
+              your store should look like you made it.
             </motion.p>
 
             <motion.div
@@ -79,24 +79,33 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.4, ease: APPLE_CURVE }}
               className="mt-6 text-[12px] text-meta-700"
             >
-              No credit card required. Free during beta.
+              14-day free trial. No credit card required.
             </motion.p>
           </div>
 
-          {/* Right: signature motion moment — layered storefront reveal */}
-          <div className="lg:col-span-6">
+          {/* Right: dashboard image, slightly bleeding past container for scale */}
+          <div className="lg:col-span-7 lg:-mr-12 xl:-mr-20">
             <motion.div
-              initial={reduced ? { opacity: 0 } : { opacity: 0, y: 24, scale: 0.98 }}
+              initial={
+                reduced ? { opacity: 0 } : { opacity: 0, y: 28, scale: 0.985 }
+              }
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{
-                duration: 0.7,
+                duration: 0.8,
                 delay: 0.15,
                 ease: APPLE_CURVE,
               }}
-              className="lg:max-w-none mx-auto max-w-[480px]"
             >
-              <BrowserFrame url="haloskin.evercart.io">
-                <HaloSkinStorefront animate />
+              <BrowserFrame url="app.evercart.io">
+                <Image
+                  src="/product/dashboard-home.png"
+                  width={2400}
+                  height={1350}
+                  alt="The Evercart dashboard showing revenue, orders, customers, and recent activity for Halo Skin Co."
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  priority
+                  className="block w-full h-auto"
+                />
               </BrowserFrame>
             </motion.div>
           </div>
