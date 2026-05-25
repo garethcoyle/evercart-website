@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --ease-apple: cubic-bezier(0.32, 0.72, 0, 1);
+    --duration-fast: 180ms;
+    --duration-base: 200ms;
+    --duration-drawer: 280ms;
+    --duration-transition: 320ms;
+    --duration-reveal: 500ms;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: var(--font-manrope), system-ui, sans-serif;
+    font-weight: 500;
+    line-height: 1.55;
+  }
+
+  /* Type rhythm — headlines use 800, tight tracking, generous leading */
+  h1, h2, h3, h4 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  /* Designed focus states — not the default browser outline */
+  :focus-visible {
+    outline: 2px solid #000000;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Selection colour matches brand */
+  ::selection {
+    background-color: #000000;
+    color: #FFFFFF;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Small caps editorial label — used as section eyebrows */
+  .label {
+    @apply text-[10px] uppercase tracking-label font-bold text-emerald;
+  }
+  .label-ink {
+    @apply text-[10px] uppercase tracking-label font-bold text-ink;
+  }
+}
