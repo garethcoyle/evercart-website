@@ -1,7 +1,9 @@
-import Image from "next/image";
 import { Container } from "@/components/ui/Container";
+import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { Reveal } from "@/components/motion/Reveal";
-import { HOMEPAGE_IMAGERY } from "@/lib/homepage-imagery";
+import { StorefrontHeroMockup } from "@/components/homepage/StorefrontHeroMockup";
+import { CheckoutMockup } from "@/components/homepage/CheckoutMockup";
+import { ChatDrawerMockup } from "@/components/homepage/ChatDrawerMockup";
 import { cn } from "@/lib/utils";
 import { type ReactNode } from "react";
 
@@ -68,43 +70,35 @@ export function WhatYouGet() {
         </Reveal>
 
         <div className="mt-6 divide-y divide-line">
-          {/* 01 — Storefront / builder */}
+          {/* 01 — Storefront — show an actual storefront hero */}
           <Block
             number="01"
             title="A storefront that looks made, not assembled."
             body="A section-based builder with restraint by default and 40+ premium themes to start from. Your shop looks like yours — not like a template you share with thousands of other stores."
             imagePosition="right"
           >
-            <div className="relative aspect-[5/4] rounded-[14px] overflow-hidden bg-surface">
-              <Image
-                src={HOMEPAGE_IMAGERY.storefrontScene.src}
-                alt={HOMEPAGE_IMAGERY.storefrontScene.alt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 60vw"
-                className="object-cover"
-              />
+            <div className="aspect-[5/4] rounded-[14px] overflow-hidden border border-line shadow-[0_30px_60px_-20px_rgba(0,0,0,0.18),0_8px_20px_-8px_rgba(0,0,0,0.08)]">
+              <BrowserFrame url="haloskin.evercart.io" shadow={false}>
+                <div className="aspect-[5/3.5]">
+                  <StorefrontHeroMockup />
+                </div>
+              </BrowserFrame>
             </div>
           </Block>
 
-          {/* 02 — Multi-gateway checkout */}
+          {/* 02 — Multi-gateway checkout — show the actual checkout */}
           <Block
             number="02"
             title="Sell with whatever your customers carry."
             body="Stripe, PayPal, and PayFast in the box. Set up one or all three. Zero transaction fees on every plan — we charge for software, not the privilege of taking payment."
             imagePosition="left"
           >
-            <div className="relative aspect-[5/4] rounded-[14px] overflow-hidden bg-surface">
-              <Image
-                src={HOMEPAGE_IMAGERY.objects.src}
-                alt={HOMEPAGE_IMAGERY.objects.alt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 60vw"
-                className="object-cover"
-              />
+            <div className="aspect-[5/4] rounded-[14px] overflow-hidden border border-line bg-paper shadow-[0_30px_60px_-20px_rgba(0,0,0,0.18),0_8px_20px_-8px_rgba(0,0,0,0.08)]">
+              <CheckoutMockup />
             </div>
           </Block>
 
-          {/* 03 — Domain */}
+          {/* 03 — Domain — typographic treatment, no photo needed */}
           <Block
             number="03"
             title="Your shop URL on us, or bring your own."
@@ -138,21 +132,15 @@ export function WhatYouGet() {
             </div>
           </Block>
 
-          {/* 04 — Support */}
+          {/* 04 — Support — show the actual chat drawer */}
           <Block
             number="04"
             title="Support that lives where the work happens."
             body="Open the chat drawer in your dashboard. Real people answer — no ticket numbers, no email chains, no bot pretending to be a person. Faster on Growth, dedicated on Pro."
             imagePosition="left"
           >
-            <div className="relative aspect-[5/4] rounded-[14px] overflow-hidden bg-surface">
-              <Image
-                src={HOMEPAGE_IMAGERY.workspace.src}
-                alt={HOMEPAGE_IMAGERY.workspace.alt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 60vw"
-                className="object-cover"
-              />
+            <div className="aspect-[5/4] rounded-[14px] overflow-hidden border border-line bg-paper shadow-[0_30px_60px_-20px_rgba(0,0,0,0.18),0_8px_20px_-8px_rgba(0,0,0,0.08)]">
+              <ChatDrawerMockup />
             </div>
           </Block>
         </div>

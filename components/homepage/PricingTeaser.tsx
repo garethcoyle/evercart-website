@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
-import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
-import { APPLE_CURVE } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 type Plan = {
@@ -18,7 +16,7 @@ type Plan = {
   featured?: boolean;
 };
 
-// Annual prices match the in-product /select-plan page (20% off monthly).
+// Annual prices: monthly × 0.8 rounded — matches the in-app pricing page.
 const PLANS: Plan[] = [
   {
     name: "Starter",
@@ -56,63 +54,10 @@ const PLANS: Plan[] = [
   },
 ];
 
-type BillingCycle = "monthly" | "annual";
-
-function BillingToggle({
-  value,
-  onChange,
-}: {
-  value: BillingCycle;
-  onChange: (v: BillingCycle) => void;
-}) {
-  return (
-    <div
-      role="tablist"
-      aria-label="Billing cycle"
-      className="inline-flex items-center gap-1 p-1 rounded-full border border-line bg-paper"
-    >
-      <button
-        type="button"
-        role="tab"
-        aria-selected={value === "monthly"}
-        onClick={() => onChange("monthly")}
-        className={cn(
-          "px-5 h-9 rounded-full text-[13px] font-semibold transition-all duration-200 ease-apple",
-          value === "monthly"
-            ? "bg-ink text-paper"
-            : "text-meta hover:text-ink",
-        )}
-      >
-        Monthly
-      </button>
-      <button
-        type="button"
-        role="tab"
-        aria-selected={value === "annual"}
-        onClick={() => onChange("annual")}
-        className={cn(
-          "px-5 h-9 rounded-full text-[13px] font-semibold transition-all duration-200 ease-apple flex items-center gap-2",
-          value === "annual" ? "bg-ink text-paper" : "text-meta hover:text-ink",
-        )}
-      >
-        Annual
-        <span
-          className={cn(
-            "text-[10px] uppercase tracking-label font-bold px-1.5 py-0.5 rounded",
-            value === "annual"
-              ? "bg-emerald/15 text-emerald"
-              : "text-emerald",
-          )}
-        >
-          Save 20%
-        </span>
-      </button>
-    </div>
-  );
-}
+type Cadence = "monthly" | "annual";
 
 export function PricingTeaser() {
-  const [billing, setBilling] = useState<BillingCycle>("monthly");
+  const [cadence, setCadence] = useState<Cadence>("monthly");
 
   return (
     <section className="py-24 md:py-32">
@@ -152,17 +97,56 @@ export function PricingTeaser() {
           </div>
         </div>
 
-        {/* Billing toggle */}
-        <Reveal delay={0.2}>
+        {/* Monthly / Annual toggle — matches the in-app pricing flow */}
+        <Reveal delay={0.18}>
           <div className="mt-10 flex justify-center">
-            <BillingToggle value={billing} onChange={setBilling} />
+            <div
+              role="tablist"
+              aria-label="Billing cadence"
+              className="inline-flex items-center bg-offwhite border border-line rounded-full p-1"
+            >
+              <button
+                type="button"
+                role="tab"
+                aria-selected={cadence === "monthly"}
+                onClick={() => setCadence("monthly")}
+                className={cn(
+                  "px-5 py-2 rounded-full text-[13px] font-semibold transition-all duration-200 ease-apple",
+                  cadence === "monthly"
+                    ? "bg-paper text-ink shadow-[0_1px_3px_rgba(0,0,0,0.08)]"
+                    : "text-meta hover:text-ink",
+                )}
+              >
+                Monthly
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={cadence === "annual"}
+                onClick={() => setCadence("annual")}
+                className={cn(
+                  "px-5 py-2 rounded-full text-[13px] font-semibold inline-flex items-center gap-2 transition-all duration-200 ease-apple",
+                  cadence === "annual"
+                    ? "bg-paper text-ink shadow-[0_1px_3px_rgba(0,0,0,0.08)]"
+                    : "text-meta hover:text-ink",
+                )}
+              >
+                Annual
+                <span
+                  className="text-[10px] font-bold uppercase tracking-[0.1em] text-emerald"
+                  aria-hidden
+                >
+                  Save 20%
+                </span>
+              </button>
+            </div>
           </div>
         </Reveal>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
           {PLANS.map((plan, i) => {
-            const displayPrice =
-              billing === "monthly" ? plan.monthlyPrice : plan.annualPrice;
+            const price =
+              cadence === "monthly" ? plan.monthlyPrice : plan.annualPrice;
             return (
               <Reveal key={plan.name} delay={i * 0.06}>
                 <div
@@ -197,18 +181,14 @@ export function PricingTeaser() {
                     {plan.tagline}
                   </p>
                   <div className="mt-8 flex items-baseline gap-1">
-                    <motion.span
-                      key={`${plan.name}-${billing}`}
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.25, ease: APPLE_CURVE }}
+                    <span
                       className={cn(
-                        "text-[44px] font-extrabold tracking-[-0.025em] leading-none",
+                        "text-[44px] font-extrabold tracking-[-0.025em] leading-none transition-all duration-300 ease-apple",
                         plan.featured ? "text-paper" : "text-ink",
                       )}
                     >
-                      {displayPrice}
-                    </motion.span>
+                      {price}
+                    </span>
                     <span
                       className={cn(
                         "text-[14px] font-medium",
@@ -218,14 +198,14 @@ export function PricingTeaser() {
                       / month
                     </span>
                   </div>
-                  {billing === "annual" && (
+                  {cadence === "annual" && (
                     <p
                       className={cn(
-                        "mt-2 text-[12px]",
-                        plan.featured ? "text-paper/55" : "text-meta-700",
+                        "mt-1.5 text-[11px]",
+                        plan.featured ? "text-paper/60" : "text-meta-700",
                       )}
                     >
-                      Billed annually
+                      Billed yearly
                     </p>
                   )}
                   <ul className="mt-8 space-y-3 flex-1">

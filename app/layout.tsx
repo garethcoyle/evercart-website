@@ -51,9 +51,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-GB" className={manrope.variable}>
-      <body className="min-h-screen flex flex-col">
+      <body>
         <Header />
-        <main className="flex-1">{children}</main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

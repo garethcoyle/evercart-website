@@ -31,7 +31,7 @@ export function Lookbook() {
           </div>
         </div>
 
-        {/* Lookbook grid — asymmetric, editorial */}
+        {/* Lookbook grid — asymmetric, editorial. No captions. */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-12 gap-5 md:gap-6">
           {HOMEPAGE_IMAGERY.lookbook.map((shot, i) => {
             const spans = [
@@ -46,20 +46,15 @@ export function Lookbook() {
                 delay={0.05 * i + 0.18}
                 className={spans[i]}
               >
-                <figure className="h-full">
-                  <div className="relative h-full w-full rounded-[10px] overflow-hidden bg-surface">
-                    <Image
-                      src={shot.src}
-                      alt={shot.alt}
-                      fill
-                      sizes="(max-width: 768px) 50vw, 40vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  <figcaption className="mt-3 text-[12px] italic text-meta-700">
-                    {shot.caption}
-                  </figcaption>
-                </figure>
+                <div className="relative h-full w-full rounded-[10px] overflow-hidden bg-surface">
+                  <Image
+                    src={shot.src}
+                    alt={shot.alt}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 40vw"
+                    className="object-cover"
+                  />
+                </div>
               </Reveal>
             );
           })}
