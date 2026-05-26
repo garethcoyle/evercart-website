@@ -1,19 +1,18 @@
 import { Container } from "@/components/ui/Container";
 
 /**
- * SectionBreak — a quiet divider between two adjacent sections.
+ * SectionBreak — quiet divider between two sections.
  *
- * Single thin hairline in the paper (white) colour, centred against
- * the offwhite section backgrounds. Subtle and editorial — does the
- * work without announcing itself.
+ * Matches the hairlines used inside the WhatYouGet section
+ * (divide-y divide-line): a 1px line in `line` (#E5E5E5) that
+ * spans the container width. No internal padding — the
+ * surrounding sections' own py provides the breathing room.
  */
 export function SectionBreak() {
   return (
     <div className="bg-offwhite">
       <Container size="hero">
-        <div className="flex items-center justify-center py-10 md:py-14">
-          <span aria-hidden className="block h-px w-24 md:w-32 bg-paper" />
-        </div>
+        <div aria-hidden className="h-px bg-line" />
       </Container>
     </div>
   );
