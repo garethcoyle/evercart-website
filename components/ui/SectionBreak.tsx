@@ -1,24 +1,18 @@
 import { Container } from "@/components/ui/Container";
 
 /**
- * SectionBreak — a quiet visual divider between two adjacent sections.
+ * SectionBreak — a quiet divider between two adjacent sections.
  *
- * Centred Evercart mark flanked by two short hairlines. Editorial,
- * restrained, brand-affirming. Use sparingly — once per page.
+ * Single thin hairline in the paper (white) colour, centred against
+ * the offwhite section backgrounds. Subtle and editorial — does the
+ * work without announcing itself.
  */
 export function SectionBreak() {
   return (
-    <div className="bg-paper">
+    <div className="bg-offwhite">
       <Container size="hero">
-        <div className="flex items-center justify-center gap-5 py-12 md:py-16">
-          <span className="block h-px w-12 md:w-20 bg-line" />
-          <span
-            aria-hidden
-            className="text-[11px] font-extrabold tracking-[0.35em] uppercase text-meta"
-          >
-            E
-          </span>
-          <span className="block h-px w-12 md:w-20 bg-line" />
+        <div className="flex items-center justify-center py-10 md:py-14">
+          <span aria-hidden className="block h-px w-24 md:w-32 bg-paper" />
         </div>
       </Container>
     </div>
