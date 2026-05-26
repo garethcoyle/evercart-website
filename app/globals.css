@@ -64,4 +64,38 @@
   .label-ink {
     @apply text-[10px] uppercase tracking-label font-bold text-ink;
   }
+
+  /* Reading typography for long-form legal copy */
+  .legal-prose {
+    @apply text-[15px] leading-[1.7] text-meta-700;
+  }
+  .legal-prose p {
+    margin-bottom: 0.875rem;
+  }
+  .legal-prose p:last-child {
+    margin-bottom: 0;
+  }
+  .legal-prose ul,
+  .legal-prose ol {
+    padding-left: 1.25rem;
+    margin-bottom: 0.875rem;
+  }
+  .legal-prose li {
+    margin-bottom: 0.375rem;
+  }
+  .legal-prose strong {
+    @apply font-bold text-ink;
+  }
+  .legal-prose a {
+    @apply text-ink font-semibold underline underline-offset-[3px];
+  }
+  .legal-prose a:hover {
+    @apply text-emerald;
+  }
+  .legal-prose h3 {
+    @apply text-[15px] font-bold text-ink mt-6 mb-2;
+  }
+  .legal-prose h3:first-child {
+    margin-top: 0;
+  }
 }
