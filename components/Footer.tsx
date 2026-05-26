@@ -62,8 +62,8 @@ export function Footer() {
           <div className="md:col-span-5">
             <EvercartLogo height={24} className="text-ink" />
             <p className="mt-6 text-[14px] leading-relaxed text-meta max-w-xs">
-              Premium e-commerce, simply done. The platform for shops that
-              take design seriously.
+              Premium e-commerce, simply done. The platform for online stores
+              that take design seriously.
             </p>
             <p className="mt-4 text-[12px] text-meta-700 uppercase tracking-label font-bold">
               Currently in beta · Launching summer 2026

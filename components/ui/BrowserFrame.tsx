@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import { Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type BrowserFrameProps = {
@@ -41,7 +42,8 @@ export function BrowserFrame({
           <span className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
         </div>
         <div className="flex-1 flex justify-center">
-          <div className="bg-paper border border-line rounded-md px-3 py-1 text-[11px] text-meta font-medium tracking-tight max-w-[280px] truncate">
+          <div className="bg-paper border border-line rounded-md pl-2 pr-3 py-1 text-[11px] text-meta font-medium tracking-tight max-w-[300px] truncate flex items-center gap-1.5">
+            <Lock size={9} strokeWidth={2.5} className="text-meta-700 shrink-0" aria-hidden />
             {url}
           </div>
         </div>

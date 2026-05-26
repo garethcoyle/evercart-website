@@ -6,7 +6,7 @@ import { Search, ShoppingBag } from "lucide-react";
  *
  * A constructed mockup of the HERO section of a real Evercart-built storefront
  * (Halo Skin Co. — our consistent demo merchant). Shows what a customer sees
- * when they land on a shop. Used in WhatYouGet block 01.
+ * when they land on a store. Used in WhatYouGet block 01.
  *
  * Built as real markup (not a screenshot) so it stays sharp at any zoom and
  * matches the brand exactly.
@@ -28,7 +28,7 @@ export function StorefrontHeroMockup() {
           </span>
         </div>
         <nav className="hidden sm:flex items-center gap-5 text-[11px] text-meta font-medium">
-          <span>Shop</span>
+          <span>Products</span>
           <span>Routine</span>
           <span>About</span>
         </nav>
@@ -63,7 +63,7 @@ export function StorefrontHeroMockup() {
           </p>
           <div className="mt-4 sm:mt-5">
             <span className="inline-block bg-[#2A2620] text-paper text-[10px] sm:text-[11px] font-semibold px-3 py-2 rounded-md">
-              Shop the line
+              Browse the line
             </span>
           </div>
         </div>

@@ -14,7 +14,7 @@ export function Lookbook() {
             </Reveal>
             <Reveal delay={0.06}>
               <h2 className="mt-4 text-[40px] md:text-[56px] font-extrabold tracking-[-0.025em] leading-[1.05]">
-                Shops that take<br />
+                Online stores that take<br />
                 design seriously.
               </h2>
             </Reveal>
@@ -22,7 +22,7 @@ export function Lookbook() {
           <div className="md:col-span-6 mt-8 md:mt-0 md:flex md:items-end">
             <Reveal delay={0.12}>
               <p className="text-[16px] leading-[1.65] text-meta max-w-[440px]">
-                Whether you sell six products or sixty thousand, your shop
+                Whether you sell six products or sixty thousand, your online store
                 deserves to look like it was designed. Evercart is built for
                 brands that treat design as a competitive edge — not an
                 afterthought.

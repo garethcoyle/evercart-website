@@ -14,7 +14,7 @@ const U = (id: string) =>
 
 export const HOMEPAGE_IMAGERY = {
   // Section 4 — lookbook grid. Pure aesthetic support for the
-  // "Shops that take design seriously" headline. No category captions —
+  // "Online stores that take design seriously" headline. No category captions —
   // the photographs speak for themselves.
   lookbook: [
     { src: U("1556228578-8c89e6adf883"), alt: "Product photography" },

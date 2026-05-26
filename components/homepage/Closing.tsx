@@ -4,21 +4,35 @@ import { Button } from "@/components/ui/Button";
 
 export function Closing() {
   return (
-    <section className="py-32 md:py-40 bg-ink text-paper">
+    <section className="relative py-32 md:py-40 bg-ink text-paper overflow-hidden">
+      {/* Subtle radial highlight — adds depth without being a 'SaaS gradient' */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.55]"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% 30%, rgba(61,191,121,0.10), transparent 70%)",
+        }}
+      />
+      {/* Hairline accent at the top edge — a quiet section signal */}
+      <div
+        aria-hidden
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-emerald/40"
+      />
       <Container size="hero">
-        <div className="max-w-[920px] mx-auto text-center">
+        <div className="relative max-w-[920px] mx-auto text-center">
           <Reveal>
             <p
               className="text-[10px] uppercase tracking-label font-bold"
               style={{ color: "#3DBF79" }}
             >
-              Open for beta
+              Your turn
             </p>
           </Reveal>
           <Reveal delay={0.06}>
             <h2 className="mt-5 text-[48px] sm:text-[68px] lg:text-[88px] font-extrabold tracking-[-0.035em] leading-[0.98]">
-              Open a shop<br />
-              in a weekend.
+              Start an online store<br />
+              for free.
             </h2>
           </Reveal>
           <Reveal delay={0.16}>

@@ -7,7 +7,7 @@ const VIEWS = [
   {
     src: "/product/dashboard-analytics.png",
     label: "Analytics",
-    description: "Pageviews, conversion, top products. The story your shop is telling.",
+    description: "Pageviews, conversion, top products. The story your online store is telling.",
     alt: "Analytics view with pageviews, conversion rate, and top products by revenue.",
   },
   {

@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     template: "%s — Evercart",
   },
   description:
-    "Evercart is the e-commerce platform for shops that take design seriously. Currently in beta. Launching summer 2026.",
+    "Evercart is the e-commerce platform for online stores that take design seriously. Currently in beta. Launching summer 2026.",
   openGraph: {
     type: "website",
     siteName: "Evercart",
     title: "Evercart — Premium e-commerce, simply done",
     description:
-      "The e-commerce platform for shops that take design seriously.",
+      "The e-commerce platform for online stores that take design seriously.",
     images: ["/og-image.png"],
     locale: "en_GB",
   },
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Evercart — Premium e-commerce, simply done",
     description:
-      "The e-commerce platform for shops that take design seriously.",
+      "The e-commerce platform for online stores that take design seriously.",
     images: ["/og-image.png"],
   },
   icons: {

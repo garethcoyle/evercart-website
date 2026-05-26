@@ -74,7 +74,7 @@ export function WhatYouGet() {
           <Block
             number="01"
             title="A storefront that looks made, not assembled."
-            body="A section-based builder with restraint by default and 40+ premium themes to start from. Your shop looks like yours — not like a template you share with thousands of other stores."
+            body="A section-based builder with restraint by default and 40+ premium themes to start from. Your online store looks like yours — not like a template you share with thousands of others."
             imagePosition="right"
           >
             <div className="aspect-[5/4] rounded-[14px] overflow-hidden border border-line shadow-[0_30px_60px_-20px_rgba(0,0,0,0.18),0_8px_20px_-8px_rgba(0,0,0,0.08)]">
@@ -90,7 +90,7 @@ export function WhatYouGet() {
           <Block
             number="02"
             title="Sell with whatever your customers carry."
-            body="Stripe, PayPal, and PayFast in the box. Set up one or all three. Zero transaction fees on every plan — we charge for software, not the privilege of taking payment."
+            body="Stripe and PayPal in the box. Apple Pay, Google Pay, and major cards just work. Zero transaction fees on every plan — we charge for software, not the privilege of taking payment."
             imagePosition="left"
           >
             <div className="aspect-[5/4] rounded-[14px] overflow-hidden border border-line bg-paper shadow-[0_30px_60px_-20px_rgba(0,0,0,0.18),0_8px_20px_-8px_rgba(0,0,0,0.08)]">
@@ -101,8 +101,8 @@ export function WhatYouGet() {
           {/* 03 — Domain — typographic treatment, no photo needed */}
           <Block
             number="03"
-            title="Your shop URL on us, or bring your own."
-            body="Every store gets a yourshop.evercart.io subdomain from day one. Connect a custom domain whenever you&rsquo;re ready — included on every plan, SSL handled for you."
+            title="Your online store URL on us, or bring your own."
+            body="Every online store gets a yourbrand.evercart.io subdomain from day one. Connect a custom domain whenever you&rsquo;re ready — included on every plan, SSL handled for you."
             imagePosition="right"
           >
             <div className="aspect-[5/4] rounded-[14px] bg-offwhite border border-line p-10 md:p-14 flex flex-col justify-center">

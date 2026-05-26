@@ -1,50 +1,59 @@
 import { CreditCard, Check } from "lucide-react";
+import {
+  VisaLogo,
+  MastercardLogo,
+  AmexLogo,
+  PayPalLogo,
+  ApplePayLogo,
+  StripeLogo,
+} from "@/components/homepage/PaymentLogos";
+import { type ReactNode } from "react";
 
 /**
  * CheckoutMockup
  *
  * A constructed mockup of the payment-method selection during checkout on a
- * Halo Skin Co. shop. Directly illustrates the multi-gateway claim in the
- * block copy (Stripe / PayPal / PayFast in the box, 0% transaction fees).
+ * Halo Skin Co. store. Illustrates the multi-gateway claim in the block copy
+ * (Stripe / PayPal / Apple Pay, 0% transaction fees).
  *
  * Used in WhatYouGet block 02.
  */
 
-type PaymentMethod = {
+type Method = {
   id: string;
   name: string;
   detail: string;
-  badge: string; // small text-only mark on the right
   selected?: boolean;
   cardIcon?: boolean;
+  logos: ReactNode; // brand marks rendered on the right of the row
 };
 
-const METHODS: PaymentMethod[] = [
+const METHODS: Method[] = [
   {
     id: "card",
     name: "Credit or debit card",
     detail: "Visa, Mastercard, Amex",
-    badge: "via Stripe",
     selected: true,
     cardIcon: true,
+    logos: (
+      <div className="flex items-center gap-1.5">
+        <VisaLogo className="h-[18px] w-auto" />
+        <MastercardLogo className="h-[18px] w-auto" />
+        <AmexLogo className="h-[18px] w-auto" />
+      </div>
+    ),
   },
   {
     id: "paypal",
     name: "PayPal",
     detail: "Pay with your PayPal balance",
-    badge: "PayPal",
+    logos: <PayPalLogo className="h-[16px] w-auto" />,
   },
   {
     id: "applepay",
     name: "Apple Pay",
     detail: "One-tap with your saved card",
-    badge: "Apple Pay",
-  },
-  {
-    id: "payfast",
-    name: "PayFast",
-    detail: "Local rails for South Africa",
-    badge: "PayFast",
+    logos: <ApplePayLogo className="h-[16px] w-auto" />,
   },
 ];
 
@@ -76,9 +85,7 @@ export function CheckoutMockup() {
             key={m.id}
             className={[
               "flex items-center gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border transition-colors",
-              m.selected
-                ? "border-ink bg-surface"
-                : "border-line bg-paper",
+              m.selected ? "border-ink bg-surface" : "border-line bg-paper",
             ].join(" ")}
           >
             <span
@@ -89,11 +96,7 @@ export function CheckoutMockup() {
               ].join(" ")}
             >
               {m.selected && (
-                <Check
-                  size={10}
-                  strokeWidth={3}
-                  className="text-paper"
-                />
+                <Check size={10} strokeWidth={3} className="text-paper" />
               )}
             </span>
             {m.cardIcon && (
@@ -112,9 +115,7 @@ export function CheckoutMockup() {
                 {m.detail}
               </p>
             </div>
-            <span className="text-[9px] uppercase tracking-[0.1em] font-bold text-meta-700 shrink-0">
-              {m.badge}
-            </span>
+            <div className="shrink-0">{m.logos}</div>
           </div>
         ))}
       </div>
@@ -127,6 +128,14 @@ export function CheckoutMockup() {
       >
         Pay $52.00
       </button>
+
+      {/* Powered-by attribution */}
+      <div className="mt-3 flex items-center justify-center gap-1.5">
+        <span className="text-[9px] uppercase tracking-[0.12em] font-bold text-meta-700">
+          Powered by
+        </span>
+        <StripeLogo className="h-[14px] w-auto" />
+      </div>
     </div>
   );
 }
