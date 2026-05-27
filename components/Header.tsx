@@ -10,24 +10,57 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { APPLE_CURVE } from "@/lib/motion";
-import { PRODUCT_LINKS, RESOURCE_LINKS } from "@/lib/nav";
+import {
+  PRODUCT_LINKS,
+  PRODUCT_GROUPS,
+  RESOURCE_LINKS,
+  type NavLink,
+  type NavGroup,
+} from "@/lib/nav";
 
-type LinkItem = { href: string; label: string };
+/**
+ * DropdownLink — title + optional description, rendered as a single
+ * clickable block with a subtle hover state.
+ */
+function DropdownLink({ href, label, description }: NavLink) {
+  return (
+    <Link
+      href={href}
+      className="block py-2.5 px-3 -mx-3 rounded-lg hover:bg-surface transition-colors duration-150"
+    >
+      <p className="text-[13.5px] font-semibold text-ink leading-tight">
+        {label}
+      </p>
+      {description && (
+        <p className="text-[12px] text-meta mt-1 leading-[1.4]">
+          {description}
+        </p>
+      )}
+    </Link>
+  );
+}
 
+/**
+ * NavDropdown — desktop hover/click dropdown menu.
+ * Accepts either a flat `items` list or grouped `groups` (rendered as
+ * a multi-column mega menu with section headers).
+ */
 function NavDropdown({
   label,
   items,
-  columns = 1,
-  panelMinWidth,
+  groups,
+  panelWidth,
 }: {
   label: string;
-  items: ReadonlyArray<LinkItem>;
-  columns?: 1 | 3;
-  panelMinWidth?: number;
+  items?: ReadonlyArray<NavLink>;
+  groups?: ReadonlyArray<NavGroup>;
+  panelWidth?: number;
 }) {
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
 
   useEffect(() => {
     if (!open) return;
@@ -71,7 +104,7 @@ function NavDropdown({
         onClick={() => setOpen((v) => !v)}
         className={cn(
           "flex items-center gap-1 text-[14px] transition-colors duration-200 ease-apple",
-          open ? "text-ink" : "text-meta hover:text-ink"
+          open ? "text-ink" : "text-meta hover:text-ink",
         )}
       >
         {label}
@@ -80,7 +113,7 @@ function NavDropdown({
           strokeWidth={2.25}
           className={cn(
             "transition-transform duration-200 ease-apple",
-            open && "rotate-180"
+            open && "rotate-180",
           )}
         />
       </button>
@@ -91,31 +124,39 @@ function NavDropdown({
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.2, ease: APPLE_CURVE }}
+            transition={{ duration: 0.22, ease: APPLE_CURVE }}
             className="absolute left-1/2 -translate-x-1/2 top-full pt-3"
           >
             <div
-              className="bg-paper border border-line rounded-2xl shadow-[0_24px_60px_-20px_rgba(0,0,0,0.18),0_4px_16px_-4px_rgba(0,0,0,0.06)] py-4 px-3"
-              style={panelMinWidth ? { minWidth: panelMinWidth } : undefined}
+              className="bg-paper border border-line rounded-2xl shadow-[0_30px_70px_-20px_rgba(0,0,0,0.18),0_4px_16px_-4px_rgba(0,0,0,0.06)] p-6"
+              style={panelWidth ? { width: panelWidth } : undefined}
             >
-              <ul
-                className={cn(
-                  columns === 3
-                    ? "grid grid-cols-3 gap-x-2 gap-y-0.5"
-                    : "flex flex-col"
-                )}
-              >
-                {items.map((item) => (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className="block py-2 px-3 rounded-md text-[13px] text-meta hover:text-ink hover:bg-surface transition-colors duration-150 whitespace-nowrap font-medium"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              {groups ? (
+                <div className="grid grid-cols-3 gap-x-6 gap-y-0">
+                  {groups.map((group) => (
+                    <div key={group.heading}>
+                      <p className="text-[10px] uppercase tracking-[0.14em] font-bold text-meta-700 mb-3 px-3">
+                        {group.heading}
+                      </p>
+                      <ul className="flex flex-col gap-0.5">
+                        {group.items.map((item) => (
+                          <li key={item.href}>
+                            <DropdownLink {...item} />
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              ) : items ? (
+                <ul className="flex flex-col gap-0.5">
+                  {items.map((item) => (
+                    <li key={item.href}>
+                      <DropdownLink {...item} />
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
             </div>
           </motion.div>
         )}
@@ -124,12 +165,16 @@ function NavDropdown({
   );
 }
 
+/**
+ * MobileSection — accordion-style expandable section for the mobile sheet.
+ * Shows titles only (no descriptions) to keep the mobile menu tight.
+ */
 function MobileSection({
   label,
   items,
 }: {
   label: string;
-  items: ReadonlyArray<LinkItem>;
+  items: ReadonlyArray<{ href: string; label: string }>;
 }) {
   const [expanded, setExpanded] = useState(false);
   return (
@@ -146,7 +191,7 @@ function MobileSection({
           strokeWidth={2}
           className={cn(
             "transition-transform duration-200 ease-apple text-meta",
-            expanded && "rotate-180"
+            expanded && "rotate-180",
           )}
         />
       </button>
@@ -156,7 +201,7 @@ function MobileSection({
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2, ease: APPLE_CURVE }}
+            transition={{ duration: 0.22, ease: APPLE_CURVE }}
             className="overflow-hidden"
           >
             <ul className="pb-4 flex flex-col gap-1">
@@ -212,7 +257,7 @@ export function Header() {
         "transition-all duration-320 ease-apple",
         scrolled
           ? "bg-paper/85 backdrop-blur-md border-b border-line"
-          : "bg-paper/0 border-b border-transparent"
+          : "bg-paper/0 border-b border-transparent",
       )}
     >
       <Container size="hero">
@@ -231,9 +276,8 @@ export function Header() {
           >
             <NavDropdown
               label="Products"
-              items={PRODUCT_LINKS}
-              columns={3}
-              panelMinWidth={480}
+              groups={PRODUCT_GROUPS}
+              panelWidth={720}
             />
             <Link
               href="/pricing"
@@ -241,7 +285,7 @@ export function Header() {
                 "text-[14px] transition-colors duration-200 ease-apple relative",
                 pathname === "/pricing"
                   ? "text-ink font-semibold"
-                  : "text-meta hover:text-ink"
+                  : "text-meta hover:text-ink",
               )}
             >
               Pricing
@@ -252,7 +296,11 @@ export function Header() {
                 />
               )}
             </Link>
-            <NavDropdown label="Resources" items={RESOURCE_LINKS} columns={1} />
+            <NavDropdown
+              label="Resources"
+              items={RESOURCE_LINKS}
+              panelWidth={280}
+            />
           </nav>
 
           <div className="hidden md:flex items-center gap-5 shrink-0">
@@ -302,7 +350,13 @@ export function Header() {
               >
                 Pricing
               </Link>
-              <MobileSection label="Resources" items={RESOURCE_LINKS} />
+              <MobileSection
+                label="Resources"
+                items={RESOURCE_LINKS.map((r) => ({
+                  href: r.href,
+                  label: r.label,
+                }))}
+              />
             </nav>
             <div className="pt-6 pb-12">
               <a
