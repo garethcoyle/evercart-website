@@ -69,12 +69,7 @@ export const COMPARE_GROUPS: CompareGroup[] = [
         shopify: "Up to 2% unless using Shopify Payments",
         squarespace: "2% on entry plan, 0% above",
       },
-      {
-        label: "Setup fees",
-        evercart: false,
-        shopify: false,
-        squarespace: false,
-      },
+      { label: "Setup fees", evercart: false, shopify: false, squarespace: false },
       {
         label: "Bandwidth / traffic charges",
         evercart: false,
@@ -84,10 +79,11 @@ export const COMPARE_GROUPS: CompareGroup[] = [
     ],
   },
   {
-    heading: "Building & selling",
+    heading: "Build & design",
     rows: [
+      { label: "Unlimited products", evercart: true, shopify: true, squarespace: true },
       {
-        label: "Unlimited products",
+        label: "Premium, design-led themes",
         evercart: true,
         shopify: true,
         squarespace: true,
@@ -99,8 +95,26 @@ export const COMPARE_GROUPS: CompareGroup[] = [
         squarespace: "Annual plans",
       },
       {
-        label: "Design-led premium themes",
+        label: "AI-assisted content",
+        note: "product copy and image tools",
+        evercart: "Growth & Pro",
+        shopify: true,
+        squarespace: true,
+      },
+    ],
+  },
+  {
+    heading: "Sell",
+    rows: [
+      {
+        label: "Secure one-page checkout",
         evercart: true,
+        shopify: true,
+        squarespace: true,
+      },
+      {
+        label: "Unlimited discount codes",
+        evercart: "Every plan",
         shopify: true,
         squarespace: true,
       },
@@ -111,11 +125,36 @@ export const COMPARE_GROUPS: CompareGroup[] = [
         squarespace: "Core & above",
       },
       {
+        label: "Customer accounts",
+        evercart: "Growth & Pro",
+        shopify: true,
+        squarespace: true,
+      },
+      {
+        label: "Gift cards",
+        evercart: "Growth & Pro",
+        shopify: true,
+        squarespace: "Core & above",
+      },
+      {
         label: "Multi-currency checkout",
         evercart: "Pro",
         shopify: true,
         squarespace: "Limited",
       },
+    ],
+  },
+  {
+    heading: "Grow",
+    rows: [
+      { label: "SEO tools", evercart: true, shopify: true, squarespace: true },
+      {
+        label: "Analytics & reporting",
+        evercart: true,
+        shopify: true,
+        squarespace: true,
+      },
+      { label: "Staff accounts", evercart: true, shopify: true, squarespace: true },
     ],
   },
 ];

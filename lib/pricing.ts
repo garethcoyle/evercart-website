@@ -1,4 +1,5 @@
-// Pricing data — matches the in-app pricing page exactly.
+// Pricing data — single source of truth for the /pricing page AND the
+// homepage pricing teaser. Edit here and both stay in sync.
 // Annual prices are the monthly-equivalent when billed annually (20% off).
 
 export type Cadence = "monthly" | "annual";
@@ -9,8 +10,13 @@ export type Plan = {
   monthlyPrice: number;
   annualPrice: number;
   tagline: string;
-  features: string[];
   featured?: boolean;
+  /** Name of the plan whose features this plan builds on (for "Everything in X, plus"). */
+  inherits?: string;
+  /** Incremental features shown on the /pricing cards (full list for the base plan). */
+  features: string[];
+  /** Three punchy items shown on the homepage teaser. */
+  highlights: string[];
 };
 
 export const PLANS: Plan[] = [
@@ -22,12 +28,18 @@ export const PLANS: Plan[] = [
     tagline: "Launch your store and make your first sales.",
     features: [
       "Unlimited products",
+      "40+ premium themes",
       "Custom domain + SSL",
       "0% transaction fees",
-      "40+ premium themes",
+      "Secure, fast checkout",
       "Basic analytics (30 days)",
       "Unlimited discount codes",
       "Email support",
+    ],
+    highlights: [
+      "Unlimited products",
+      "40+ premium themes",
+      "0% transaction fees",
     ],
   },
   {
@@ -37,17 +49,19 @@ export const PLANS: Plan[] = [
     annualPrice: 23,
     tagline: "The full toolkit to grow and market your store.",
     featured: true,
+    inherits: "Starter",
     features: [
-      "Unlimited products",
-      "Custom domain + SSL",
-      "0% transaction fees",
-      "40+ premium themes",
-      "Full analytics + history",
+      "Evercart AI for products & photos",
       "Abandoned cart recovery",
       "Customer accounts",
       "Gift cards",
-      "Unlimited discount codes",
+      "Full analytics + history",
       "Staff accounts (3)",
+      "Priority support",
+    ],
+    highlights: [
+      "Evercart AI built in",
+      "Abandoned cart recovery",
       "Priority support",
     ],
   },
@@ -57,20 +71,19 @@ export const PLANS: Plan[] = [
     monthlyPrice: 79,
     annualPrice: 63,
     tagline: "No limits. No compromises. Total control.",
+    inherits: "Growth",
     features: [
-      "Unlimited products",
-      "Custom domain + SSL",
-      "0% transaction fees",
-      "40+ premium themes",
-      "Advanced analytics + exports",
-      "Abandoned cart recovery",
-      "Customer accounts",
-      "Gift cards",
-      "Unlimited discount codes",
+      "AI analytics insights",
       "Multi-currency checkout",
       "API access",
+      "Advanced analytics + exports",
       "Staff accounts (10)",
       "Priority support + onboarding",
+    ],
+    highlights: [
+      "AI analytics insights",
+      "Multi-currency checkout",
+      "API access",
     ],
   },
 ];
@@ -90,8 +103,8 @@ export const PLAN_INCLUDES: { title: string; description: string }[] = [
     description: "Connect your own domain, secured automatically.",
   },
   {
-    title: "Unlimited bandwidth",
-    description: "No traffic caps and no surprise overage charges.",
+    title: "Unlimited products",
+    description: "List as much as you like on every plan, from day one.",
   },
   {
     title: "Multi-gateway checkout",
@@ -103,7 +116,7 @@ export const PLAN_INCLUDES: { title: string; description: string }[] = [
   },
 ];
 
-// Full feature comparison matrix.
+// Full feature comparison matrix (Evercart tiers).
 export type ComparisonValue = boolean | string;
 export type ComparisonRow = {
   label: string;
@@ -126,6 +139,14 @@ export const COMPARISON: ComparisonGroup[] = [
     rows: [
       { label: "Premium themes", starter: "40+", growth: "40+", pro: "40+" },
       { label: "Custom domain + SSL", starter: true, growth: true, pro: true },
+    ],
+  },
+  {
+    heading: "Evercart AI",
+    rows: [
+      { label: "AI product descriptions", starter: false, growth: true, pro: true },
+      { label: "AI photo polish", starter: false, growth: true, pro: true },
+      { label: "AI analytics insights", starter: false, growth: false, pro: true },
     ],
   },
   {

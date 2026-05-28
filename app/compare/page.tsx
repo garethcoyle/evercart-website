@@ -152,35 +152,36 @@ export default function ComparePage() {
         </Container>
       </section>
 
-      {/* Honest note — builds trust */}
+      {/* Positioning — confident */}
       <section className="py-20 md:py-28 bg-offwhite border-y border-line">
         <Container size="hero">
           <div className="max-w-[680px]">
             <Reveal>
-              <p className="label">Straight talk</p>
+              <p className="label">Why Evercart</p>
             </Reveal>
             <Reveal delay={0.06}>
               <h2 className="mt-4 text-[30px] md:text-[40px] font-extrabold tracking-[-0.025em] leading-[1.1] text-ink">
-                Evercart isn&rsquo;t for everyone &mdash; and that&rsquo;s the point.
+                The power of a big platform, without the fees.
               </h2>
             </Reveal>
             <Reveal delay={0.12}>
               <div className="mt-6 space-y-4 text-[16px] leading-[1.65] text-meta">
                 <p>
-                  If you need a sprawling app marketplace, in-person POS
-                  hardware, or to sell across a dozen channels on day one, the
-                  larger platforms are more established. We&rsquo;re not trying
-                  to be everything.
+                  Evercart gives you everything you&rsquo;d expect from an
+                  established platform &mdash; a fast, beautiful, fully-featured
+                  online store &mdash; and keeps 100% of every sale in your
+                  pocket with 0% transaction fees on every plan.
                 </p>
                 <p>
-                  Evercart is for people who want a genuinely beautiful online
-                  store, set up without friction, that keeps 100% of every sale.
-                  No transaction fees on any plan. No paying more for the basics.
-                  A platform that takes design as seriously as you do.
+                  Design isn&rsquo;t an afterthought or a paid add-on. It&rsquo;s
+                  built into the platform from the first click, so your store
+                  looks like you made it &mdash; not like it came off a
+                  production line.
                 </p>
                 <p>
-                  If that&rsquo;s the store you want to build, you&rsquo;ll feel
-                  the difference in the first ten minutes.
+                  And Evercart keeps getting better. We ship new features
+                  constantly, built for ambitious stores that intend to become
+                  names everyone knows.
                 </p>
               </div>
             </Reveal>

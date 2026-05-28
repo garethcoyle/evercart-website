@@ -6,55 +6,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { cn } from "@/lib/utils";
-
-type Plan = {
-  name: string;
-  monthlyPrice: string;
-  annualPrice: string;
-  tagline: string;
-  highlights: string[];
-  featured?: boolean;
-};
-
-// Annual prices: monthly × 0.8 rounded — matches the in-app pricing page.
-const PLANS: Plan[] = [
-  {
-    name: "Starter",
-    monthlyPrice: "$9",
-    annualPrice: "$7",
-    tagline: "Launch your online store and make your first sales.",
-    highlights: [
-      "Up to 20 products",
-      "Custom domain + SSL",
-      "0% transaction fees",
-    ],
-  },
-  {
-    name: "Growth",
-    monthlyPrice: "$29",
-    annualPrice: "$23",
-    tagline: "The full toolkit to grow and market your online store.",
-    highlights: [
-      "Up to 100 products",
-      "Abandoned cart recovery",
-      "Priority support",
-    ],
-    featured: true,
-  },
-  {
-    name: "Pro",
-    monthlyPrice: "$79",
-    annualPrice: "$63",
-    tagline: "No limits. No compromises. Total control.",
-    highlights: [
-      "Unlimited products",
-      "Multi-currency checkout",
-      "Dedicated account manager",
-    ],
-  },
-];
-
-type Cadence = "monthly" | "annual";
+import { PLANS, type Cadence } from "@/lib/pricing";
 
 export function PricingTeaser() {
   const [cadence, setCadence] = useState<Cadence>("monthly");
@@ -74,9 +26,9 @@ export function PricingTeaser() {
             </Reveal>
             <Reveal delay={0.12}>
               <p className="mt-5 text-[17px] leading-[1.55] text-meta max-w-[480px]">
-                Every plan includes the builder, multi-gateway checkout,
-                custom domain, and 0% transaction fees. Pay 20% less when
-                you choose annual.
+                Every plan includes unlimited products, the builder,
+                multi-gateway checkout, a custom domain, and 0% transaction
+                fees. Pay 20% less when you choose annual.
               </p>
             </Reveal>
           </div>
@@ -148,7 +100,7 @@ export function PricingTeaser() {
             const price =
               cadence === "monthly" ? plan.monthlyPrice : plan.annualPrice;
             return (
-              <Reveal key={plan.name} delay={i * 0.06}>
+              <Reveal key={plan.id} delay={i * 0.06}>
                 <div
                   className={cn(
                     "group relative rounded-[16px] p-7 md:p-8 h-full flex flex-col transition-all duration-300 ease-apple",
@@ -157,7 +109,6 @@ export function PricingTeaser() {
                       : "bg-paper border border-line hover:-translate-y-1 hover:border-ink/40 hover:shadow-[0_10px_30px_-12px_rgba(0,0,0,0.12)]",
                   )}
                 >
-                  {/* Featured: soft emerald edge accent */}
                   {plan.featured && (
                     <div
                       aria-hidden
@@ -203,7 +154,7 @@ export function PricingTeaser() {
                         plan.featured ? "text-paper" : "text-ink",
                       )}
                     >
-                      {price}
+                      ${price}
                     </span>
                     <span
                       className={cn(
@@ -214,16 +165,14 @@ export function PricingTeaser() {
                       / month
                     </span>
                   </div>
-                  {cadence === "annual" && (
-                    <p
-                      className={cn(
-                        "mt-1.5 text-[11px]",
-                        plan.featured ? "text-paper/60" : "text-meta-700",
-                      )}
-                    >
-                      Billed yearly
-                    </p>
-                  )}
+                  <p
+                    className={cn(
+                      "mt-1.5 text-[11px]",
+                      plan.featured ? "text-paper/60" : "text-meta-700",
+                    )}
+                  >
+                    {cadence === "annual" ? "Billed yearly" : "Billed monthly"}
+                  </p>
                   <ul className="mt-8 space-y-3 flex-1">
                     {plan.highlights.map((h) => (
                       <li

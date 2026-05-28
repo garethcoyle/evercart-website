@@ -96,6 +96,16 @@ function PlanCard({ plan, cadence }: { plan: Plan; cadence: Cadence }) {
       />
 
       {/* Features */}
+      {plan.inherits && (
+        <p
+          className={cn(
+            "text-[13px] font-semibold mb-4",
+            featured ? "text-paper" : "text-ink",
+          )}
+        >
+          Everything in {plan.inherits}, plus:
+        </p>
+      )}
       <ul className="flex flex-col gap-3 flex-1">
         {plan.features.map((feature) => (
           <li key={feature} className="flex items-start gap-2.5">
