@@ -104,6 +104,7 @@ export const RESOURCE_LINKS: ReadonlyArray<NavLink> = [
 
 export const COMPANY_LINKS = [
   { href: "/about", label: "About Evercart" },
+  { href: "/compare", label: "Compare" },
   { href: "/careers", label: "Careers" },
   { href: "/newsroom", label: "Newsroom" },
   { href: "/contact", label: "Contact" },

@@ -21,12 +21,12 @@ export const PLANS: Plan[] = [
     annualPrice: 7,
     tagline: "Launch your store and make your first sales.",
     features: [
-      "Up to 20 products",
+      "Unlimited products",
       "Custom domain + SSL",
       "0% transaction fees",
-      "5 premium themes",
+      "40+ premium themes",
       "Basic analytics (30 days)",
-      "1 active discount code",
+      "Unlimited discount codes",
       "Email support",
     ],
   },
@@ -38,7 +38,7 @@ export const PLANS: Plan[] = [
     tagline: "The full toolkit to grow and market your store.",
     featured: true,
     features: [
-      "Up to 100 products",
+      "Unlimited products",
       "Custom domain + SSL",
       "0% transaction fees",
       "40+ premium themes",
@@ -70,7 +70,7 @@ export const PLANS: Plan[] = [
       "Multi-currency checkout",
       "API access",
       "Staff accounts (10)",
-      "Dedicated account manager",
+      "Priority support + onboarding",
     ],
   },
 ];
@@ -117,14 +117,14 @@ export const COMPARISON: ComparisonGroup[] = [
   {
     heading: "Catalogue",
     rows: [
-      { label: "Products", starter: "Up to 20", growth: "Up to 100", pro: "Unlimited" },
+      { label: "Products", starter: "Unlimited", growth: "Unlimited", pro: "Unlimited" },
       { label: "Gift cards", starter: false, growth: true, pro: true },
     ],
   },
   {
     heading: "Design & domain",
     rows: [
-      { label: "Premium themes", starter: "5", growth: "40+", pro: "40+" },
+      { label: "Premium themes", starter: "40+", growth: "40+", pro: "40+" },
       { label: "Custom domain + SSL", starter: true, growth: true, pro: true },
     ],
   },
@@ -132,7 +132,7 @@ export const COMPARISON: ComparisonGroup[] = [
     heading: "Selling",
     rows: [
       { label: "Transaction fees", starter: "0%", growth: "0%", pro: "0%" },
-      { label: "Discount codes", starter: "1 active", growth: "Unlimited", pro: "Unlimited" },
+      { label: "Discount codes", starter: "Unlimited", growth: "Unlimited", pro: "Unlimited" },
       { label: "Abandoned cart recovery", starter: false, growth: true, pro: true },
       { label: "Customer accounts", starter: false, growth: true, pro: true },
       { label: "Multi-currency checkout", starter: false, growth: false, pro: true },
@@ -154,7 +154,7 @@ export const COMPARISON: ComparisonGroup[] = [
     heading: "Team & support",
     rows: [
       { label: "Staff accounts", starter: false, growth: "3", pro: "10" },
-      { label: "Support", starter: "Email", growth: "Priority", pro: "Dedicated manager" },
+      { label: "Support", starter: "Email", growth: "Priority", pro: "Priority + onboarding" },
     ],
   },
 ];

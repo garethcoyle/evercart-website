@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Link from "next/link";
 import { Check, Minus } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
@@ -128,6 +129,19 @@ export function PricingComparison() {
               </tbody>
             </table>
           </div>
+        </Reveal>
+
+        <Reveal delay={0.18}>
+          <p className="mt-8 text-[14px] text-meta">
+            Curious how we stack up against other platforms?{" "}
+            <Link
+              href="/compare"
+              className="text-ink font-semibold underline underline-offset-2 hover:text-emerald transition-colors"
+            >
+              See the full comparison
+            </Link>
+            .
+          </p>
         </Reveal>
       </Container>
     </section>
