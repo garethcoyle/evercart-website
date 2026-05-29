@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { APPLE_CURVE } from "@/lib/motion";
 
 // Words that cycle in the headline. Each works as a completion of
-// "Build an online store you'll actually want to ___." Single syllables for rhythm.
+// "Launch an online store you'll actually want to ___." Single syllables for rhythm.
 const CYCLE_WORDS = ["share", "run", "scale", "grow"] as const;
 const CYCLE_INTERVAL_MS = 2800;
 
@@ -48,7 +48,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.08, ease: APPLE_CURVE }}
             className="mt-6 text-[48px] sm:text-[72px] lg:text-[104px] font-extrabold tracking-[-0.035em] leading-[0.98] text-ink"
           >
-            <span className="block">Build an online store</span>
+            <span className="block">Launch an online store</span>
             <span className="block">you&rsquo;ll actually want</span>
             <span className="block relative">
               to&nbsp;
