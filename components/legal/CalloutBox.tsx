@@ -13,7 +13,7 @@ export function CalloutBox({
   const styles: Record<Variant, string> = {
     highlight: "bg-emerald/[0.08] border-emerald/20 text-ink",
     warning: "bg-[#FEF3E2] border-[#F59E0B]/20 text-ink",
-    info: "bg-surface border-line text-meta-700",
+    info: "bg-surface border-line text-ink/80",
   };
 
   return (

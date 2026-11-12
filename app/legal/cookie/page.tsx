@@ -1,357 +1,384 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { LegalPage, type LegalSectionData } from "@/components/legal/LegalPage";
-import { CalloutBox } from "@/components/legal/CalloutBox";
+import { LegalTable } from "@/components/legal/LegalTable";
 
 export const metadata: Metadata = {
   title: "Cookie Policy",
   description:
-    "What cookies Evercart uses, why we use them, and how to control them.",
+    "The cookies and browser storage used on www.evercart.io, in the Evercart dashboard and on Evercart stores, and how to control them.",
 };
+
+// Every name and duration on this page comes from the code. When the
+// dashboard or the stores start keeping something new in the browser, add it
+// here, and keep the store tables in step with the store cookie policy that
+// Evercart writes for each merchant (lib/legalTemplates.ts in the app).
+
+const PRIVACY_EMAIL = "privacy@evercart.io";
+
+function External({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer">
+      {children}
+    </a>
+  );
+}
+
+const STORAGE_HEAD = ["Name", "What it’s for", "Where", "How long"];
 
 const SECTIONS: LegalSectionData[] = [
   {
     id: "what-are-cookies",
     number: 1,
-    title: "What are cookies?",
+    title: "What cookies are",
     content: (
       <>
         <p>
-          Cookies are small text files that a website stores on your device
-          when you visit. They allow the site to recognise you on future
-          visits, remember your preferences, and understand how the site is
-          being used. We also use similar technologies such as local storage,
-          session storage, and pixel tags &mdash; in this policy, all of these
-          are referred to collectively as &ldquo;cookies&rdquo;.
+          Cookies are small pieces of data a website stores in your browser. A
+          website can also keep data in your browser’s localStorage, which stays
+          until it’s cleared, and sessionStorage, which is cleared when you
+          close the tab. This policy covers all three.
         </p>
         <p>
-          Cookies set by Evercart are &ldquo;first-party&rdquo; cookies.
-          Cookies set by third-party services we use (such as analytics or
-          payment providers) are &ldquo;third-party&rdquo; cookies.
+          In the tables below, a name part in angle brackets, such as{" "}
+          <code>&lt;store&gt;</code>, stands for a store’s own name or ID.
         </p>
       </>
     ),
   },
   {
-    id: "why-we-use",
+    id: "website",
     number: 2,
-    title: "Why we use cookies",
+    title: "www.evercart.io",
     content: (
       <>
-        <p>We use cookies for four purposes:</p>
-        <ul>
-          <li>
-            <strong>Essential cookies</strong> keep the platform running and
-            secure
-          </li>
-          <li>
-            <strong>Preference cookies</strong> remember your settings
-            (language, theme, dismissed banners)
-          </li>
-          <li>
-            <strong>Analytics cookies</strong> help us understand how
-            merchants use the dashboard so we can improve it
-          </li>
-          <li>
-            <strong>Marketing cookies</strong> help us measure the
-            effectiveness of our advertising on the evercart.io marketing
-            website
-          </li>
-        </ul>
         <p>
-          Essential and preference cookies are set automatically. Analytics
-          and marketing cookies are only set after you accept them via our
-          consent banner.
+          Our website sets no cookies and keeps nothing in your browser’s
+          storage. It runs no analytics, advertising or social media tags, and
+          loads nothing from other companies: its fonts and pictures come from
+          our own site.
         </p>
       </>
     ),
   },
   {
-    id: "essential",
+    id: "dashboard",
     number: 3,
-    title: "Essential cookies",
+    title: "The Evercart dashboard",
     content: (
       <>
         <p>
-          These are required for Evercart to function. You cannot opt out of
-          them &mdash; if you block them, parts of the platform will stop
-          working.
+          The dashboard at app.evercart.io sets no cookies for merchants and
+          their staff, and runs no analytics or advertising tags. It keeps these
+          in your browser: what it needs to work, and a few preferences you set
+          yourself.
         </p>
-        <ul>
-          <li>
-            <strong>Authentication:</strong> Keeps you signed in to the
-            dashboard. Stored as an httpOnly session token, never accessible
-            to JavaScript.
-          </li>
-          <li>
-            <strong>CSRF protection:</strong> A short-lived token included in
-            forms to prevent cross-site request forgery attacks.
-          </li>
-          <li>
-            <strong>Cart state:</strong> On merchant storefronts, remembers
-            what a shopper has added to their cart between page loads.
-          </li>
-          <li>
-            <strong>Consent preferences:</strong> Remembers which categories
-            of cookies you have accepted or declined so you don&rsquo;t have to
-            choose again on every visit.
-          </li>
-        </ul>
+        <LegalTable
+          id="dashboard-storage"
+          label="What the Evercart dashboard keeps in your browser"
+          minWidth={640}
+          head={STORAGE_HEAD}
+          rows={[
+            [
+              <code key="n">sb-&lt;project&gt;-auth-token</code>,
+              "Keeps you signed in",
+              "localStorage",
+              "Until you sign out",
+            ],
+            [
+              <code key="n">evercart-used-links</code>,
+              "Remembers sign-in links already used in this browser, so pressing one again doesn’t show an error",
+              "localStorage",
+              "The last 10 links, each for an hour",
+            ],
+            [
+              <code key="n">evercart-recovery-opened</code>,
+              "Notes that a password reset link was opened in this tab",
+              "sessionStorage",
+              "Until you close the tab",
+            ],
+            [
+              <code key="n">ec_editor_prefs</code>,
+              "Which store editor panels are open, and the preview size",
+              "localStorage",
+              "Until you clear it",
+            ],
+            [
+              <code key="n">ec_editor_page:&lt;store&gt;</code>,
+              "The page you last had open in the store editor",
+              "localStorage",
+              "Until you clear it",
+            ],
+            [
+              <code key="n">evercart_checklist_dismissed</code>,
+              "Whether you’ve collapsed the checklist on your home page",
+              "localStorage",
+              "Until you clear it",
+            ],
+            [
+              <code key="n">ec.campaign-edits.&lt;campaign&gt;.&lt;tab&gt;</code>,
+              "Unsaved changes to an email campaign, so a reload doesn’t lose them",
+              "localStorage",
+              "Until you save, send or delete the campaign in this browser",
+            ],
+            [
+              <code key="n">ec.tab</code>,
+              "Tells this tab’s unsaved changes from another tab’s",
+              "sessionStorage",
+              "Until you close the tab",
+            ],
+            [
+              <span key="n">
+                <code>ec-plan-confirming:&lt;store&gt;</code>,{" "}
+                <code>ec-plan-claim:&lt;store&gt;</code>
+              </span>,
+              "A plan purchase in progress",
+              "sessionStorage",
+              "Until you close the tab",
+            ],
+          ]}
+        />
+        <p>
+          Two services on the dashboard may store data of their own, under
+          their own policies:{" "}
+          <External href="https://www.paddle.com/legal/privacy">Paddle</External>
+          ’s checkout, which opens when you choose a plan, and{" "}
+          <External href="https://www.cloudflare.com/privacypolicy/">
+            Cloudflare
+          </External>{" "}
+          Turnstile, which checks our sign-up, sign-in and password reset forms.
+          Signing in with Google or Facebook takes you to their sites, where
+          their own cookies apply.
+        </p>
       </>
     ),
   },
   {
-    id: "preference",
+    id: "stores",
     number: 4,
-    title: "Preference cookies",
+    title: "Evercart stores",
     content: (
       <>
         <p>
-          These remember choices you have made so the platform behaves the way
-          you expect on your next visit.
+          Stores keep what they need to work, and use optional cookies only if
+          you allow them. Each merchant chooses their store’s optional tools, so
+          the store’s own cookie policy, linked at the foot of its pages, is the
+          final word for that store.
         </p>
-        <ul>
-          <li>
-            <strong>Display preferences:</strong> Light or dark theme, table
-            density, dashboard layout choices.
-          </li>
-          <li>
-            <strong>Dismissed notices:</strong> Banners and onboarding tips
-            you have closed.
-          </li>
-          <li>
-            <strong>Recently viewed:</strong> The last few items you opened in
-            your dashboard for quick access.
-          </li>
-        </ul>
+        <h3>Always used</h3>
+        <LegalTable
+          id="store-essential"
+          label="What every Evercart store keeps in your browser"
+          minWidth={640}
+          head={STORAGE_HEAD}
+          rows={[
+            [
+              <code key="n">evercart_cookie_consent</code>,
+              "Your cookie choice, so the store can respect it",
+              "localStorage",
+              "6 months, or 12 if you accepted everything",
+            ],
+            [
+              <code key="n">evercart_cart_&lt;store&gt;</code>,
+              "Your cart",
+              "localStorage",
+              "Expires after 14 days without a visit, and is deleted the next time you open the store",
+            ],
+            [
+              <code key="n">evercart_ordered_&lt;store&gt;</code>,
+              "Your last 20 orders, so each is taken out of your cart only once",
+              "localStorage",
+              "Until you clear it",
+            ],
+            [
+              <code key="n">evercart_wishlist_&lt;store&gt;</code>,
+              "Products you’ve saved",
+              "localStorage",
+              "Until you clear it",
+            ],
+            [
+              <code key="n">evercart_wallets:&lt;key&gt;</code>,
+              "Whether your device offers Apple Pay, Google Pay or Link (Stripe’s saved payment details)",
+              "sessionStorage",
+              "Until you close the tab",
+            ],
+            [
+              <code key="n">ec_customer</code>,
+              "Keeps you signed in to your account with the store",
+              "Cookie",
+              "30 days, or until you sign out",
+            ],
+          ]}
+        />
+        <h3>Only if you allow them</h3>
+        <LegalTable
+          id="store-optional"
+          label="What Evercart stores keep in your browser only with your permission"
+          minWidth={640}
+          head={STORAGE_HEAD}
+          rows={[
+            [
+              <code key="n">evercart_recent_&lt;store&gt;</code>,
+              "Preferences: products you’ve looked at recently",
+              "localStorage",
+              "Until you clear it, or turn recently viewed off",
+            ],
+            [
+              <code key="n">evercart_session</code>,
+              "Statistics: a random ID for this visit",
+              "sessionStorage",
+              "Until you close the tab, or turn statistics off",
+            ],
+            [
+              <span key="n">
+                <code>_ga</code>, <code>_ga_&lt;ID&gt;</code>
+              </span>,
+              "Statistics: Google Analytics, if the store uses it",
+              "Cookies",
+              "Up to 2 years, or until you turn statistics off",
+            ],
+            [
+              <span key="n">
+                <code>_fbp</code>, <code>_fbc</code>
+              </span>,
+              "Advertising: the Meta Pixel, if the store uses it, at the store’s own domain",
+              "Cookies",
+              "90 days, or until you turn advertising off",
+            ],
+            [
+              <span key="n">
+                <code>_ec_fbp</code>, <code>_ec_fbc</code>
+              </span>,
+              "Advertising: the Meta Pixel, if the store uses it, at the store’s evercart.io address",
+              "Cookies",
+              "90 days, or until you turn advertising off",
+            ],
+          ]}
+        />
+        <p>
+          A store’s own statistics count the pages viewed, the products looked
+          at and how far visits get towards a purchase, with the random ID for
+          that visit. They don’t record your IP address or device. Google
+          Analytics runs with its advertising features switched off.
+        </p>
+        <h3>Payments and videos</h3>
+        <p>
+          Stripe’s express payment buttons (Apple Pay, Google Pay and Link) can
+          appear on product pages, in the cart and at checkout, and load when a
+          page shows them. They, and the payment pages of Stripe, PayPal and
+          PayFast, may use cookies of their own under each provider’s policy.
+          Videos from YouTube or Vimeo load only when you press play, using
+          YouTube’s privacy-enhanced mode and Vimeo’s do-not-track setting.
+          Once a video plays, the video site may keep data in your browser under
+          its own policy.
+        </p>
       </>
     ),
   },
   {
-    id: "analytics",
+    id: "choices",
     number: 5,
-    title: "Analytics cookies",
+    title: "Your choices",
     content: (
       <>
         <p>
-          We use a small number of analytics tools to understand how
-          merchants use Evercart so we can improve the product. These cookies
-          only activate after you consent via the cookie banner.
+          On a store, use <strong>Cookie settings</strong>, at the foot of every
+          page, to change your choice at any time. When you turn something off,
+          it stops straight away, and what it stored under the store’s address
+          is removed. Cookies that Google or Meta keep under their own addresses
+          can be cleared in your browser’s settings.
+        </p>
+        <p>
+          Your browser can also block or clear cookies and storage. If you block
+          them, a store can’t keep your cart between visits or keep you signed
+          in, and the dashboard can’t keep you signed in. Your browser’s help
+          pages explain how:
         </p>
         <ul>
           <li>
-            <strong>Plausible Analytics:</strong> Aggregated, privacy-friendly
-            usage analytics. Plausible does not use cross-site tracking or
-            collect personal data.
-          </li>
-          <li>
-            <strong>Server-side event tracking:</strong> Anonymised events
-            sent from our servers about which features are used most. No
-            cookies are set in your browser for this; it&rsquo;s included here
-            for transparency.
-          </li>
-        </ul>
-        <p>
-          We do not use Google Analytics on the merchant dashboard. If we add
-          additional analytics tools in future, we will update this list and
-          notify you before they take effect.
-        </p>
-      </>
-    ),
-  },
-  {
-    id: "marketing",
-    number: 6,
-    title: "Marketing cookies",
-    content: (
-      <>
-        <p>
-          On our marketing website (www.evercart.io), we may use marketing
-          cookies to measure the effectiveness of our advertising campaigns
-          and reach people who may be interested in Evercart. These cookies
-          only activate after you consent via the cookie banner.
-        </p>
-        <ul>
-          <li>
-            <strong>Meta Pixel:</strong> Helps us measure the effectiveness of
-            our advertising on Facebook and Instagram.
-          </li>
-          <li>
-            <strong>Google Ads conversion tracking:</strong> Tells us when
-            someone who clicked one of our ads goes on to sign up.
-          </li>
-          <li>
-            <strong>LinkedIn Insight Tag:</strong> Helps us measure the
-            effectiveness of advertising on LinkedIn.
-          </li>
-        </ul>
-        <p>
-          We never use marketing cookies on the merchant dashboard
-          (app.evercart.io). They are confined to our marketing site.
-        </p>
-      </>
-    ),
-  },
-  {
-    id: "third-party",
-    number: 7,
-    title: "Third-party cookies",
-    content: (
-      <>
-        <p>
-          A small number of third-party services we use may set their own
-          cookies when their content loads on Evercart pages. These cookies
-          are governed by the third party&rsquo;s privacy policy, not ours.
-        </p>
-        <ul>
-          <li>
-            <strong>Stripe:</strong> Sets cookies when payment forms are
-            loaded, used for fraud detection.{" "}
-            <a
-              href="https://stripe.com/cookies-policy/legal"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Stripe cookie policy
-            </a>
-          </li>
-          <li>
-            <strong>Cloudflare:</strong> Sets security cookies to protect the
-            site from bots and attacks.{" "}
-            <a
-              href="https://www.cloudflare.com/cookie-policy/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Cloudflare cookie policy
-            </a>
-          </li>
-          <li>
-            <strong>YouTube / Vimeo:</strong> If we embed videos on the
-            marketing site, those players may set cookies.
-          </li>
-        </ul>
-      </>
-    ),
-  },
-  {
-    id: "managing",
-    number: 8,
-    title: "Managing your cookies",
-    content: (
-      <>
-        <p>
-          You have several ways to control which cookies are set:
-        </p>
-        <h3>Our cookie banner</h3>
-        <p>
-          On your first visit to evercart.io, we show a consent banner that
-          lets you accept all cookies, reject non-essential cookies, or
-          customise your preferences by category. You can reopen this banner
-          at any time by clicking &ldquo;Cookie settings&rdquo; in the footer.
-        </p>
-        <h3>Your browser settings</h3>
-        <p>
-          All major browsers allow you to block cookies, clear existing
-          cookies, or be notified when cookies are set. Refer to your
-          browser&rsquo;s help pages:
-        </p>
-        <ul>
-          <li>
-            <a
-              href="https://support.google.com/chrome/answer/95647"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <External href="https://support.google.com/chrome/answer/95647">
               Google Chrome
-            </a>
+            </External>
           </li>
           <li>
-            <a
-              href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <External href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer">
               Mozilla Firefox
-            </a>
+            </External>
           </li>
           <li>
-            <a
-              href="https://support.apple.com/en-gb/guide/safari/sfri11471/mac"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Safari
-            </a>
+            <External href="https://support.apple.com/en-gb/guide/safari/sfri11471/mac">
+              Safari on Mac
+            </External>
           </li>
           <li>
-            <a
-              href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <External href="https://support.apple.com/en-gb/guide/iphone/iphacc5f0202/ios">
+              Safari on iPhone
+            </External>
+          </li>
+          <li>
+            <External href="https://support.microsoft.com/en-us/edge/manage-cookies-in-microsoft-edge-view-allow-block-delete-and-use">
               Microsoft Edge
-            </a>
+            </External>
           </li>
         </ul>
-        <CalloutBox variant="warning">
-          <strong>Heads up:</strong> Blocking essential cookies will break
-          parts of Evercart. You won&rsquo;t be able to sign in, and shopping
-          carts won&rsquo;t persist between pages. Blocking analytics or
-          marketing cookies has no effect on the functionality of the
-          platform.
-        </CalloutBox>
       </>
     ),
   },
   {
-    id: "do-not-track",
-    number: 9,
-    title: "Do Not Track signals",
+    id: "signals",
+    number: 6,
+    title: "Do Not Track and Global Privacy Control",
     content: (
       <>
         <p>
-          Some browsers send a &ldquo;Do Not Track&rdquo; signal. Because
-          there is no agreed industry standard for how to respond to it, we
-          do not currently change our behaviour based on this signal. We
-          honour the choices you make via our consent banner instead.
-        </p>
-        <p>
-          We do honour the Global Privacy Control (GPC) signal. If your
-          browser sends a GPC header, we treat it as an opt-out of any sale
-          or sharing of personal information for cross-context behavioural
-          advertising. (We do not sell or share personal information for
-          such purposes in any event &mdash; see Section 4 of our{" "}
-          <Link href="/legal/privacy">Privacy Policy</Link>.)
+          Our own sites, www.evercart.io and the dashboard, run no advertising
+          or analytics tags, so there’s nothing for a Do Not Track or Global
+          Privacy Control signal to switch off. On stores, optional cookies wait
+          for your choice in the store’s banner. Stores don’t read these signals
+          yet.
         </p>
       </>
     ),
   },
   {
     id: "changes",
-    number: 10,
+    number: 7,
     title: "Changes to this policy",
     content: (
       <>
         <p>
-          We may update this Cookie Policy from time to time as we add or
-          remove tools that use cookies. When we make material changes, we
-          will update the &ldquo;Last updated&rdquo; date at the top of this
-          page and, if the change affects analytics or marketing cookies,
-          we will surface a new consent prompt before they activate.
+          When what we keep in your browser changes, we update this page and
+          its date. On a store, a new optional tool stays off until you allow
+          it.
         </p>
+        <h3>Versions</h3>
+        <ul>
+          <li>
+            <strong>2.0, 12 November 2026.</strong> Rewritten to list exactly
+            what www.evercart.io, the dashboard and stores keep in your browser.
+            It corrects version 1.0, which described a cookie banner, analytics
+            and advertising cookies that Evercart’s own sites don’t use.
+          </li>
+          <li>
+            <strong>1.0, 1 October 2026.</strong> First version.
+          </li>
+        </ul>
       </>
     ),
   },
   {
     id: "contact",
-    number: 11,
-    title: "Contact",
+    number: 8,
+    title: "Contact us",
     content: (
       <>
         <p>
-          If you have questions about this Cookie Policy or how we use
-          cookies, please get in touch.
+          Questions about this policy? Email{" "}
+          <a href={`mailto:${PRIVACY_EMAIL}`}>{PRIVACY_EMAIL}</a>. For a store’s
+          cookies, ask the store. Our{" "}
+          <Link href="/legal/privacy">Privacy Policy</Link> explains how we
+          handle personal information.
         </p>
       </>
     ),
@@ -362,19 +389,25 @@ export default function CookiePage() {
   return (
     <LegalPage
       title="Cookie Policy"
-      effectiveDate="1 October 2026"
-      lastUpdated="1 October 2026"
-      version="1.0"
-      contactEmail="privacy@evercart.io"
-      contactName="Evercart Privacy Team"
+      effectiveDate="12 November 2026"
+      lastUpdated="12 November 2026"
+      version="2.0"
+      contactEmail={PRIVACY_EMAIL}
+      contactName="Evercart privacy"
       summary={
         <>
-          <strong>The short version:</strong> We use a small number of cookies
-          to keep Evercart running, remember your preferences, and understand
-          how the platform is being used. Essential cookies are always on.
-          Analytics and marketing cookies only activate after you accept them.
-          You can change your choices at any time via the cookie banner or
-          your browser settings.
+          <p className="font-bold">The short version</p>
+          <ul className="mt-2 list-disc space-y-1.5 pl-5 marker:text-ink/40">
+            <li>www.evercart.io uses no cookies and keeps nothing in your browser.</li>
+            <li>
+              The Evercart dashboard keeps your sign-in and a few settings in
+              your browser, only what it needs to work.
+            </li>
+            <li>
+              Stores keep what they need, such as your cart, and use optional
+              cookies only if you allow them.
+            </li>
+          </ul>
         </>
       }
       sections={SECTIONS}
