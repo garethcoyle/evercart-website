@@ -483,7 +483,7 @@ const SECTIONS: LegalSectionData[] = [
             ],
             [
               "Records of what our team does on accounts",
-              "No set end date, so we can account for our team’s actions.",
+              "Six years for what our team does, and one year for what it views, then deleted.",
             ],
             [
               "IP addresses used to limit repeated attempts",
@@ -495,7 +495,7 @@ const SECTIONS: LegalSectionData[] = [
             ],
             [
               "Records of emails that bounce, are delayed or are reported as spam",
-              "No set end date. A permanent bounce or a spam report stops all email to that address until you ask us to remove it.",
+              "Delays and temporary bounces: 90 days. A permanent bounce or a spam report stops all email to that address until you ask us to remove it.",
             ],
             [
               "Shoppers’ information",
@@ -503,6 +503,12 @@ const SECTIONS: LegalSectionData[] = [
             ],
           ]}
         />
+        <p>
+          Pictures shown on stores are resized and cached by Vercel. After a
+          picture is deleted, or a review with photos is hidden, a resized copy
+          can stay in that cache for up to 31 days. Only someone who already has
+          the copy’s web address can open it.
+        </p>
         <p>
           We keep anything else only as long as we need it for the purposes in{" "}
           <a href="#how-we-use">section 4</a>.
@@ -773,6 +779,12 @@ const SECTIONS: LegalSectionData[] = [
         <h3>Versions</h3>
         <ul>
           <li>
+            <strong>2.1, 16 November 2026.</strong> Sets how long we keep
+            records of what our team does on accounts and of delayed and
+            temporarily bounced emails, and says how long resized pictures can
+            stay in Vercel’s image cache.
+          </li>
+          <li>
             <strong>2.0, 12 November 2026.</strong> Rewritten in full. It now
             names every company that handles personal information for us, and
             says where information is stored, how long we keep it and what
@@ -811,9 +823,9 @@ export default function PrivacyPage() {
   return (
     <LegalPage
       title="Privacy Policy"
-      effectiveDate="12 November 2026"
-      lastUpdated="12 November 2026"
-      version="2.0"
+      effectiveDate="16 November 2026"
+      lastUpdated="16 November 2026"
+      version="2.1"
       contactEmail={PRIVACY_EMAIL}
       contactName="Evercart privacy"
       summary={
